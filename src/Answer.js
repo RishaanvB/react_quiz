@@ -1,8 +1,11 @@
-function Answer({answer, correctAnswer}){
+function Answer({answer, isCorrectAnswer, onHandleAnswerChange, isChecked}){
+
     return (
-        correctAnswer ? 
-        <p style={{color: "green", fontWeight:"bold", fontSize: '24px'}} dangerouslySetInnerHTML={{ __html: answer}}></p> :
-        <p dangerouslySetInnerHTML={{ __html: answer}}></p>
+        <div >
+            <input type="radio" name="answer" id={answer} value={answer} onChange={onHandleAnswerChange} />
+            <label dangerouslySetInnerHTML={{__html:answer}} htmlFor={answer}></label>
+            
+        </div>
     )
 }
 
