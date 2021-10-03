@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import Answer from "./Answer";
 
 function App() {
+  const [correctAnswer, setCorrectAnswer] = useState(
+    "This is the correct answer"
+  );
+  const [wrongAnswers, setWrongAnswers] = useState([]);
+  // const [category, setCategory] = useState("Category here");
+  // const [difficulty, setDifficulty] = useState("Difficulty");
+  const [question, setQuestion] = useState("");
+  
+  useEffect(() => {
+    getTriviaData();
+    shuffleAnswers();
+  }, []);
+  
+  const getTriviaData = () => {
+    console.log("getting data");
+    fetch(`https://opentdb.com/api.php?amount=1&type=multiple`)
+      .then((response) => response.json())
+      .then((result) => {
+        // console.log(result.results[0].correct_answer);
+        // console.log(result.results[0].category);
+        // console.log(result.results[0].difficulty);
+        console.log("correct answer-->", result.results[0].correct_answer);
+        setQuestion(result.results[0].question);
+        setCorrectAnswer(result.results[0].correct_answer);
+        setWrongAnswers(result.results[0].incorrect_answers);
+      });
+  };
+
+  const shuffleAnswers = () => {
+    const ul = document.querySelector(".answers-block");
+    for (let i = ul.children.length; i >= 0; i--) {
+      ul.appendChild(ul.children[(Math.random() * i) | 0]);
+    }
+  };
+ 
+
+  const createWrongAnswers = [...Array(3)].map((_, index) => {
+    return <Answer answer={wrongAnswers[index]} />;
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="question">
+        <p dangerouslySetInnerHTML={{ __html: question }}></p>
+      </div>
+      <div className="answers-block">
+        {createWrongAnswers}
+        <Answer answer={correctAnswer} correctAnswer={true} />
+      </div>
     </div>
   );
 }
