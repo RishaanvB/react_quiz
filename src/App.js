@@ -19,9 +19,10 @@ function App() {
   }, [nextQuestion]);
 
   useEffect(() => {
+    uncheckAnswers();
     shuffleAnswers();
   }, [question]);
-  
+
   const getTriviaData = () => {
     console.log("getting data");
     fetch(`https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy`)
@@ -47,16 +48,23 @@ function App() {
   const handleAnswerChange = (e) => {
     setSelectedAnswer(e.target.value);
   };
-  const handleNextQuestion = () => {
+
+  const updateScore = () => {
     if (selectedAnswer === correctAnswer) {
       setScore(score + 1);
     }
+  };
+  const uncheckAnswers = () => {
     const inputs = document.querySelectorAll("input");
     inputs.forEach((input) => {
       input.checked = false;
     });
+  };
+  const handleNextQuestion = () => {
+    updateScore();
     setNextQuestion(nextQuestion + 1);
   };
+
   const createWrongAnswers = [...Array(3)].map((_, index) => {
     return (
       <Answer
