@@ -4,6 +4,8 @@
 }
 * {
   font-family: var(--oswald);
+  margin: 0;
+  padding: 0;
 }
 .App {
   text-align: center;

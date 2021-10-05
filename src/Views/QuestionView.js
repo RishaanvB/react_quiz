@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Answer from "./Answer";
+import Answer from "../Answer"
 
 function QuestionView() {
   const [correctAnswer, setCorrectAnswer] = useState(
