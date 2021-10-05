@@ -1,98 +1,44 @@
+import { useState } from "react";
 import "./App.css";
-import { useEffect, useState } from "react";
-import Answer from "./Answer";
+import QuestionView from "./QuestionView";
+import MenuButton from "./MenuButton";
+
+import imgTrophy from "../src/assets/Trophy_perspective_matte_s.png";
+import imgLogo from "../src/assets/FAQ_perspective_matte.png";
+import imgRocket from "../src/assets/Rocket_perspective_matte_s.png";
 
 function App() {
-  const [correctAnswer, setCorrectAnswer] = useState(
-    "This is the correct answer"
-  );
-  const [wrongAnswers, setWrongAnswers] = useState([]);
-  // const [category, setCategory] = useState("Category here");
-  // const [difficulty, setDifficulty] = useState("Difficulty");
-  const [question, setQuestion] = useState("");
-  const [selectedAnswer, setSelectedAnswer] = useState();
-  const [nextQuestion, setNextQuestion] = useState(1);
-  const [score, setScore] = useState(0);
+  const [activeStartScreen, setActiveStartScreen] = useState(true);
 
-  useEffect(() => {
-    getTriviaData();
-  }, [nextQuestion]);
-
-  useEffect(() => {
-    uncheckAnswers();
-    shuffleAnswers();
-  }, [question]);
-
-  const getTriviaData = () => {
-    console.log("getting data");
-    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy`)
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log(result.results[0].correct_answer);
-        // console.log(result.results[0].category);
-        // console.log(result.results[0].difficulty);
-        console.log("correct answer-->", result.results[0].correct_answer);
-        setQuestion(result.results[0].question);
-        setCorrectAnswer(result.results[0].correct_answer);
-        setWrongAnswers(result.results[0].incorrect_answers);
-      });
+  const animateButton = (target) => {
+    target.classList.add("animate-btn");
+    setTimeout(() => target.classList.remove("animate-btn"), 250);
+  };
+  const toHighscoreView = (e) => {
+    console.log("display highscore view");
+    animateButton(e.target);
   };
 
-  const shuffleAnswers = () => {
-    const ul = document.querySelector(".answers-block");
-    for (let i = ul.children.length; i >= 0; i--) {
-      ul.appendChild(ul.children[(Math.random() * i) | 0]);
-    }
+  const toQuestionView = () => {
+    console.log("start quiz");
   };
-
-  const handleAnswerChange = (e) => {
-    setSelectedAnswer(e.target.value);
-  };
-
-  const updateScore = () => {
-    if (selectedAnswer === correctAnswer) {
-      setScore(score + 1);
-    }
-  };
-  const uncheckAnswers = () => {
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach((input) => {
-      input.checked = false;
-    });
-  };
-  const handleNextQuestion = () => {
-    updateScore();
-    setNextQuestion(nextQuestion + 1);
-  };
-
-  const createWrongAnswers = [...Array(3)].map((_, index) => {
-    return (
-      <Answer
-        key={index}
-        answer={wrongAnswers[index]}
-        onHandleAnswerChange={handleAnswerChange}
-      />
-    );
-  });
-  console.log("selected answer-->", selectedAnswer);
-  console.log(selectedAnswer === correctAnswer);
 
   return (
-    <div className="App">
-      <div className="question">
-        <p dangerouslySetInnerHTML={{ __html: question }}></p>
-      </div>
-      <div className="answers-block">
-        {createWrongAnswers}
-        <Answer
-          answer={correctAnswer}
-          isCorrectAnswer={true}
-          onHandleAnswerChange={handleAnswerChange}
-        />
-      </div>
-      <div>
-        <button onClick={handleNextQuestion}>Next Question</button>
-      </div>
+    <div className="App background-gradient">
+      <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
+      <h1 className="quiz-title">QUIZKNOWS</h1>
+      <MenuButton
+        imgSrc={imgTrophy}
+        bgColor="btn-pink"
+        handleClick={toHighscoreView}>
+        Highscores
+      </MenuButton>
+      <MenuButton
+        imgSrc={imgRocket}
+        bgColor="btn-white"
+        handleClick={toQuestionView}>
+        Start
+      </MenuButton>
     </div>
   );
 }
