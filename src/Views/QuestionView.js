@@ -6,9 +6,10 @@ import QuestionProgress from "../components/QuestionProgress";
 import Button from "../components/Button";
 
 import {
+  resetBtnsStyling,
+  shuffleAnswers,
   animateButton,
   changeColor,
-  resetBtnsStyling,
 } from "../helpers/helpers";
 
 function QuestionView() {
@@ -47,28 +48,25 @@ function QuestionView() {
       });
   };
 
-  const shuffleAnswers = () => {
-    const ul = document.querySelector(".answers-list");
-    for (let i = ul.children.length; i >= 0; i--) {
-      ul.appendChild(ul.children[(Math.random() * i) | 0]);
-    }
-  };
-
   const handleAnswerChange = (e) => {
+    setSelectedAnswer(e.target.innerText);
     animateButton(e.target.parentNode);
-    changeColor(e.target.parentNode);
-  };
-
-  const updateScore = () => {
-    if (selectedAnswer === correctAnswer) {
-      setScore(score + 1);
-    }
+    resetBtnsStyling();
+    changeColor(e.target.parentNode, "selected-answer");
   };
 
   const handleNextQuestion = () => {
-    updateScore();
-    setNextQuestion(nextQuestion + 1);
+    const selectedAnswer = document.querySelector(".selected-answer");
+    if (!isAnswerCorrect()) {
+      changeColor(selectedAnswer, "wrong-answer-given");
+    } else {
+      updateScore();
+      changeColor(selectedAnswer, "correct-answer-given");
+    }
   };
+  const isAnswerCorrect = () => selectedAnswer === correctAnswer && true;
+
+  const updateScore = (point = 1) => setScore(score + point);
 
   const createWrongAnswers = [...Array(3)].map((_, index) => {
     return (
@@ -91,6 +89,7 @@ function QuestionView() {
 
   return (
     <>
+      <h1>Score : {score}</h1>
       <div>
         <Question question={question} />
         <QuestionProgress />

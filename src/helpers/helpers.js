@@ -3,9 +3,9 @@ const animateButton = (target) => {
   setTimeout(() => target.classList.remove("animate-btn"), 250);
 };
 
-const changeColor = (target) => {
-  resetBtnsStyling();
-  target.classList.add("selected-answer");
+const changeColor = (target, className) => {
+  // resetBtnsStyling();
+  target.classList.add(className);
 };
 
 const resetBtnsStyling = () => {
@@ -15,4 +15,11 @@ const resetBtnsStyling = () => {
   });
 };
 
-export { animateButton, changeColor, resetBtnsStyling };
+
+const shuffleAnswers = () => {
+  const ul = document.querySelector(".answers-list");
+  for (let i = ul.children.length; i >= 0; i--) {
+    ul.appendChild(ul.children[(Math.random() * i) | 0]);
+  }
+};
+export { animateButton, changeColor, resetBtnsStyling, shuffleAnswers };
