@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import Answer from "../Answer"
+import Answer from "../components/Answer";
+import AnswerList from "../components/AnswerList";
+import Question from "../components/Question";
+import QuestionProgress from "../components/QuestionProgress";
+import Button from "../components/Button";
 
 function QuestionView() {
   const [correctAnswer, setCorrectAnswer] = useState(
@@ -38,7 +42,7 @@ function QuestionView() {
   };
 
   const shuffleAnswers = () => {
-    const ul = document.querySelector(".answers-block");
+    const ul = document.querySelector(".answers-list");
     for (let i = ul.children.length; i >= 0; i--) {
       ul.appendChild(ul.children[(Math.random() * i) | 0]);
     }
@@ -46,6 +50,8 @@ function QuestionView() {
 
   const handleAnswerChange = (e) => {
     setSelectedAnswer(e.target.value);
+    console.log("clicked")
+    console.log(e.target.innerText)
   };
 
   const updateScore = () => {
@@ -69,30 +75,37 @@ function QuestionView() {
       <Answer
         key={index}
         answer={wrongAnswers[index]}
-        onHandleAnswerChange={handleAnswerChange}
+        handleClick={handleAnswerChange}
       />
     );
   });
+  const createCorrectAnswer = (
+    <Answer
+      answer={correctAnswer}
+      isCorrectAnswer={true}
+      handleClick={handleAnswerChange}
+    />
+  );
   console.log("selected answer-->", selectedAnswer);
   console.log(selectedAnswer === correctAnswer);
 
   return (
-    <div className="App">
-      <div className="question">
-        <p dangerouslySetInnerHTML={{ __html: question }}></p>
-      </div>
-      <div className="answers-block">
-        {createWrongAnswers}
-        <Answer
-          answer={correctAnswer}
-          isCorrectAnswer={true}
-          onHandleAnswerChange={handleAnswerChange}
-        />
-      </div>
-      <div>
-        <button onClick={handleNextQuestion}>Next Question</button>
-      </div>
+    <>
+    <div>
+      <Question question={question} />
+      <QuestionProgress />
+
     </div>
+      <div>
+      <AnswerList>
+        {createWrongAnswers}
+        {createCorrectAnswer}
+      </AnswerList>
+      <Button handleClick={handleNextQuestion} styles="btn-ok">OK</Button>
+
+      </div>
+
+    </>
   );
 }
 

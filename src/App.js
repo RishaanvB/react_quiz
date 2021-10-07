@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-import QuestionView from "./Views/QuestionView";
+import QuestionView from "./views/QuestionView";
 
-import HomeScreen from "./Views/HomeScreen";
+import HomeScreen from "./views/HomeScreen";
 
 function App() {
-  const [displayHomeView, setDisplayHomeView] = useState(true);
-  const [displayQuestionView, displaySetQuestionView] = useState(false);
+  const [displayHomeView, setDisplayHomeView] = useState(false);
+  const [displayQuestionView, displaySetQuestionView] = useState(true);
 
   const animateButton = (target) => {
     target.classList.add("animate-btn");
@@ -23,17 +23,25 @@ function App() {
     setDisplayHomeView(false);
     displaySetQuestionView(true);
   };
+  const goHome=()=>{
+    setDisplayHomeView(true)
+    displaySetQuestionView(false);
+
+  }
 
   return (
-    <div className="App background-gradient">
-      {displayHomeView && (
-        <HomeScreen
-          handleHighscoreView={showHighscoreView}
-          handleQuestionView={showQuestionView}
-        />
-      )}
+    <div className="App">
+      <div className="container">
+        {displayHomeView && (
+          <HomeScreen
+            handleHighscoreView={showHighscoreView}
+            handleQuestionView={showQuestionView}
+          />
+        )}
 
-      {displayQuestionView && <QuestionView />}
+        {displayQuestionView && <QuestionView />}
+        <button style={{position:'absolute'}} onClick={goHome}>Home</button>
+      </div>
     </div>
   );
 }

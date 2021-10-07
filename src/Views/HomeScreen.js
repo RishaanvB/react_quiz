@@ -1,4 +1,4 @@
-import MenuButton from "../MenuButton";
+import Button from "../components/Button";
 
 import imgTrophy from "../assets/Trophy_perspective_matte_s.png";
 import imgLogo from "../assets/FAQ_perspective_matte.png";
@@ -9,18 +9,18 @@ export default function HomeScreen(props) {
     <>
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
       <h1 className="quiz-title">QUIZKNOWS</h1>
-      <MenuButton
+      <Button
         imgSrc={imgTrophy}
-        bgColor="btn-pink"
+        styles="btn-highscore"
         handleClick={props.handleHighscoreView}>
         Highscores
-      </MenuButton>
-      <MenuButton
+      </Button>
+      <Button
         imgSrc={imgRocket}
-        bgColor="btn-white"
+        styles="btn-start"
         handleClick={props.handleQuestionView}>
         Start
-      </MenuButton>
+      </Button>
     </>
   );
 }
