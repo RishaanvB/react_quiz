@@ -4,15 +4,12 @@ import "./App.css";
 import QuestionView from "./views/QuestionView";
 
 import HomeScreen from "./views/HomeScreen";
+import { animateButton } from "./helpers/helpers";
 
 function App() {
   const [displayHomeView, setDisplayHomeView] = useState(false);
   const [displayQuestionView, displaySetQuestionView] = useState(true);
 
-  const animateButton = (target) => {
-    target.classList.add("animate-btn");
-    setTimeout(() => target.classList.remove("animate-btn"), 250);
-  };
   const showHighscoreView = (e) => {
     console.log("display highscore view");
     animateButton(e.target);
@@ -23,11 +20,10 @@ function App() {
     setDisplayHomeView(false);
     displaySetQuestionView(true);
   };
-  const goHome=()=>{
-    setDisplayHomeView(true)
+  const goHome = () => {
+    setDisplayHomeView(true);
     displaySetQuestionView(false);
-
-  }
+  };
 
   return (
     <div className="App">
@@ -40,7 +36,9 @@ function App() {
         )}
 
         {displayQuestionView && <QuestionView />}
-        <button style={{position:'absolute'}} onClick={goHome}>Home</button>
+        <button style={{ position: "absolute" }} onClick={goHome}>
+          Home
+        </button>
       </div>
     </div>
   );

@@ -5,6 +5,12 @@ import Question from "../components/Question";
 import QuestionProgress from "../components/QuestionProgress";
 import Button from "../components/Button";
 
+import {
+  animateButton,
+  changeColor,
+  resetBtnsStyling,
+} from "../helpers/helpers";
+
 function QuestionView() {
   const [correctAnswer, setCorrectAnswer] = useState(
     "This is the correct answer"
@@ -22,7 +28,7 @@ function QuestionView() {
   }, [nextQuestion]);
 
   useEffect(() => {
-    uncheckAnswers();
+    resetBtnsStyling();
     shuffleAnswers();
   }, [question]);
 
@@ -49,9 +55,8 @@ function QuestionView() {
   };
 
   const handleAnswerChange = (e) => {
-    setSelectedAnswer(e.target.value);
-    console.log("clicked")
-    console.log(e.target.innerText)
+    animateButton(e.target.parentNode);
+    changeColor(e.target.parentNode);
   };
 
   const updateScore = () => {
@@ -59,12 +64,7 @@ function QuestionView() {
       setScore(score + 1);
     }
   };
-  const uncheckAnswers = () => {
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach((input) => {
-      input.checked = false;
-    });
-  };
+
   const handleNextQuestion = () => {
     updateScore();
     setNextQuestion(nextQuestion + 1);
@@ -75,7 +75,7 @@ function QuestionView() {
       <Answer
         key={index}
         answer={wrongAnswers[index]}
-        handleClick={handleAnswerChange}
+        onHandleAnswerChange={handleAnswerChange}
       />
     );
   });
@@ -83,7 +83,7 @@ function QuestionView() {
     <Answer
       answer={correctAnswer}
       isCorrectAnswer={true}
-      handleClick={handleAnswerChange}
+      onHandleAnswerChange={handleAnswerChange}
     />
   );
   console.log("selected answer-->", selectedAnswer);
@@ -91,20 +91,19 @@ function QuestionView() {
 
   return (
     <>
-    <div>
-      <Question question={question} />
-      <QuestionProgress />
-
-    </div>
       <div>
-      <AnswerList>
-        {createWrongAnswers}
-        {createCorrectAnswer}
-      </AnswerList>
-      <Button handleClick={handleNextQuestion} styles="btn-ok">OK</Button>
-
+        <Question question={question} />
+        <QuestionProgress />
       </div>
-
+      <div>
+        <AnswerList>
+          {createWrongAnswers}
+          {createCorrectAnswer}
+        </AnswerList>
+        <Button handleClick={handleNextQuestion} styles="btn-ok">
+          OK
+        </Button>
+      </div>
     </>
   );
 }
