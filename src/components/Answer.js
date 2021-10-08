@@ -1,14 +1,12 @@
 import Button from "./Button";
 import { animateButton } from "../helpers/helpers";
 
-function Answer({ answer, isCorrectAnswer, onHandleAnswerChange, isChecked }) {
+function Answer({ answer, isCorrectAnswer, onHandleAnswerGiven, isChecked }) {
   return (
-    <Button styles="btn-answer">
-      <p
-        onClick={onHandleAnswerChange}
-        className="answerbtn-innertext"
-        dangerouslySetInnerHTML={{ __html: answer }}></p>
-    </Button>
+    <button
+      onClick={onHandleAnswerGiven}
+      className="btn-answer btn-normal"
+      dangerouslySetInnerHTML={{ __html: answer }}></button>
   );
 }
 

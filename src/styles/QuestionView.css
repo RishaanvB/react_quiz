@@ -71,27 +71,22 @@
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .btn-answer {
+  font-size: 1rem;
   margin: .5rem 0;
   padding: .5rem 1rem;
   color: #367dce;
   font-weight: bold;
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   background-color: white;
   transition: color 0.7s, background-color 0.7s;
 }
-.answerbtn-innertext {
-  font-size: 1rem;
-  height: max-content;
-  width: 100%;
-}
 
-.selected-answer {
-  color: white;
-  background: rgb(55, 55, 207);
-}
+
+
 .correct-answer-given {
-  background-color: green;
+  background-color: #65a365;
+  color: white;
 }
 .wrong-answer-given {
-  background-color: red;
+  background-color: #cb6565;
+  color: white;
 }

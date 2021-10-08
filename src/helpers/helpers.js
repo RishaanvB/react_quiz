@@ -3,18 +3,25 @@ const animateButton = (target) => {
   setTimeout(() => target.classList.remove("animate-btn"), 250);
 };
 
-const changeColor = (target, className) => {
-  // resetBtnsStyling();
+const addClassName = (target, className) => {
   target.classList.add(className);
 };
 
 const resetBtnsStyling = () => {
   const answerBtns = document.querySelectorAll(".btn-answer");
   answerBtns.forEach((btn) => {
-    btn.classList.remove("selected-answer");
+    btn.classList.remove("correct-answer-given");
+    btn.classList.remove("wrong-answer-given");
   });
 };
 
+const handleBtnsClickable = (className, action) => {
+  const btns = document.querySelectorAll(className);
+
+  btns.forEach((btn) => {
+    action ? (btn.disabled = false) : (btn.disabled = true);
+  });
+};
 
 const shuffleAnswers = () => {
   const ul = document.querySelector(".answers-list");
@@ -22,4 +29,11 @@ const shuffleAnswers = () => {
     ul.appendChild(ul.children[(Math.random() * i) | 0]);
   }
 };
-export { animateButton, changeColor, resetBtnsStyling, shuffleAnswers };
+export {
+  animateButton,
+  addClassName,
+  resetBtnsStyling,
+  shuffleAnswers,
+  handleBtnsClickable,
+  
+};

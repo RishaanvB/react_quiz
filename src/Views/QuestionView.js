@@ -9,28 +9,32 @@ import {
   resetBtnsStyling,
   shuffleAnswers,
   animateButton,
-  changeColor,
+  addClassName,
+  handleBtnsClickable,
 } from "../helpers/helpers";
 
 function QuestionView() {
+  // setting hooks
   const [correctAnswer, setCorrectAnswer] = useState(
     "This is the correct answer"
   );
   const [wrongAnswers, setWrongAnswers] = useState([]);
-  // const [category, setCategory] = useState("Category here");
-  // const [difficulty, setDifficulty] = useState("Difficulty");
   const [question, setQuestion] = useState("");
-  const [selectedAnswer, setSelectedAnswer] = useState();
-  const [nextQuestion, setNextQuestion] = useState(1);
+  const [goTonextQuestion, setGoToNextQuestion] = useState(1);
   const [score, setScore] = useState(0);
 
+  console.log(correctAnswer);
+
+  // getting data from api before render
   useEffect(() => {
     getTriviaData();
-  }, [nextQuestion]);
+  }, [goTonextQuestion]);
 
+  // reset styling for btns and shuffle them after new question gets loaded
   useEffect(() => {
     resetBtnsStyling();
     shuffleAnswers();
+    handleBtnsClickable(".btn-answer", true);
   }, [question]);
 
   const getTriviaData = () => {
@@ -41,41 +45,43 @@ function QuestionView() {
         // console.log(result.results[0].correct_answer);
         // console.log(result.results[0].category);
         // console.log(result.results[0].difficulty);
-        console.log("correct answer-->", result.results[0].correct_answer);
         setQuestion(result.results[0].question);
         setCorrectAnswer(result.results[0].correct_answer);
         setWrongAnswers(result.results[0].incorrect_answers);
       });
   };
 
-  const handleAnswerChange = (e) => {
-    console.log(e);
-    e.stopPropagation()
-    setSelectedAnswer(e.target.innerText);
-    animateButton(e.target.parentNode);
-    resetBtnsStyling();
-    changeColor(e.target.parentNode, "selected-answer");
-  };
+  const isAnswerCorrect = (selected, correct) => selected === correct && true;
+  const updateScore = (point = 1) => setScore(score + point);
 
-  const handleNextQuestion = () => {
-    const selectedAnswer = document.querySelector(".selected-answer");
-    if (!isAnswerCorrect()) {
-      changeColor(selectedAnswer, "wrong-answer-given");
+  const changeBtnColor = (e) => {
+    const selectedAnswer = e.target.innerText;
+    if (isAnswerCorrect(selectedAnswer, correctAnswer)) {
+      addClassName(e.target, "correct-answer-given");
     } else {
-      updateScore();
-      changeColor(selectedAnswer, "correct-answer-given");
+      addClassName(e.target, "wrong-answer-given");
     }
   };
-  const isAnswerCorrect = () => selectedAnswer === correctAnswer && true;
 
-  const updateScore = (point = 1) => setScore(score + point);
+  const handleAnswerGiven = (e) => {
+    const selectedAnswer = e.target.innerText;
+
+    animateButton(e.target);
+    changeBtnColor(e);
+    handleBtnsClickable(".btn-answer", false);
+    isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore(1);
+
+    setTimeout(() => {
+      setGoToNextQuestion(goTonextQuestion + 1);
+    }, 300);
+  };
 
   const createWrongAnswers = [...Array(3)].map((_, index) => {
     return (
       <Answer
         key={index}
         answer={wrongAnswers[index]}
-        onHandleAnswerChange={handleAnswerChange}
+        onHandleAnswerGiven={handleAnswerGiven}
       />
     );
   });
@@ -83,11 +89,9 @@ function QuestionView() {
     <Answer
       answer={correctAnswer}
       isCorrectAnswer={true}
-      onHandleAnswerChange={handleAnswerChange}
+      onHandleAnswerGiven={handleAnswerGiven}
     />
   );
-  console.log("selected answer-->", selectedAnswer);
-  console.log(selectedAnswer === correctAnswer);
 
   return (
     <>
@@ -101,9 +105,9 @@ function QuestionView() {
           {createWrongAnswers}
           {createCorrectAnswer}
         </AnswerList>
-        <Button handleClick={handleNextQuestion} styles="btn-ok">
+        {/* <Button handleClick={handlegoToNextQuestion} styles="btn-ok">
           OK
-        </Button>
+        </Button> */}
       </div>
     </>
   );
