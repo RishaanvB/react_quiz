@@ -3,7 +3,6 @@ import Answer from "../components/Answer";
 import AnswerList from "../components/AnswerList";
 import Question from "../components/Question";
 import QuestionProgress from "../components/QuestionProgress";
-import Button from "../components/Button";
 
 import {
   resetBtnsStyling,
@@ -23,7 +22,6 @@ function QuestionView() {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [score, setScore] = useState(0);
 
-  console.log(correctAnswer);
 
   // getting data from api before render
   useEffect(() => {

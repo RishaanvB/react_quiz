@@ -11,7 +11,7 @@
 }
 .question {
   padding: 1.5rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   font-weight: lighter;
 }
@@ -54,7 +54,7 @@
   content: "";
   height: 0.6rem;
   border-radius: 10px;
-  transition: width ease-out .2s;
+  transition: width ease-out 0.2s;
   max-width: 100%;
 }
 
@@ -72,15 +72,13 @@
 }
 .btn-answer {
   font-size: 1rem;
-  margin: .5rem 0;
-  padding: .5rem 1rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
   color: #367dce;
   font-weight: bold;
   background-color: white;
   transition: color 0.7s, background-color 0.7s;
 }
-
-
 
 .correct-answer-given {
   background-color: #65a365;
