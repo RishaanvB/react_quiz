@@ -12,20 +12,21 @@ import {
   handleBtnsClickable,
 } from "../helpers/helpers";
 
-function QuestionView() {
+function QuestionView({ updateScore, showResultScreen }) {
   // setting hooks
-  const [correctAnswer, setCorrectAnswer] = useState(
-    "This is the correct answer"
-  );
+  const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const [score, setScore] = useState(0);
-
+  const maxRounds = 5;
+  const delay = 200;
+  console.log(correctAnswer);
 
   // getting data from api before render
   useEffect(() => {
-    getTriviaData();
+    setTimeout(() => {
+      getTriviaData();
+    }, delay);
   }, [currentQuestion]);
 
   // reset styling for btns and shuffle them after new question gets loaded
@@ -50,7 +51,6 @@ function QuestionView() {
   };
 
   const isAnswerCorrect = (selected, correct) => selected === correct && true;
-  const updateScore = (point = 1) => setScore(score + point);
 
   const changeBtnColor = (e) => {
     const selectedAnswer = e.target.innerText;
@@ -66,12 +66,15 @@ function QuestionView() {
 
     animateButton(e.target);
     changeBtnColor(e);
-    // handleBtnsClickable(".btn-answer", false);
-    isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore(1);
-
-    // setTimeout(() => {
-    //   setCurrentQuestion(currentQuestion + 1);
-    // }, 10000);
+    handleBtnsClickable(".btn-answer", false);
+    isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore();
+    if (currentQuestion >= maxRounds) {
+      setTimeout(() => {
+        showResultScreen(true);
+      }, delay);
+    } else if (currentQuestion < maxRounds) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
   };
 
   const createWrongAnswers = [...Array(3)].map((_, index) => {
@@ -93,10 +96,12 @@ function QuestionView() {
 
   return (
     <>
-      <h1>Score : {score}</h1>
       <div>
         <Question question={question} />
-        <QuestionProgress  currentQuestion={currentQuestion}/>
+        <QuestionProgress
+          currentQuestion={currentQuestion}
+          maxRounds={maxRounds}
+        />
       </div>
       <div>
         <AnswerList>
