@@ -66,12 +66,12 @@ function QuestionView() {
 
     animateButton(e.target);
     changeBtnColor(e);
-    handleBtnsClickable(".btn-answer", false);
+    // handleBtnsClickable(".btn-answer", false);
     isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore(1);
 
-    setTimeout(() => {
-      setCurrentQuestion(currentQuestion + 1);
-    }, 300);
+    // setTimeout(() => {
+    //   setCurrentQuestion(currentQuestion + 1);
+    // }, 10000);
   };
 
   const createWrongAnswers = [...Array(3)].map((_, index) => {

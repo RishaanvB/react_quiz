@@ -28,12 +28,7 @@
 input[type="radio"]:checked + label {
   font-weight: bold;
 }
-.wrong-answer {
-  color: red;
-}
-.correct-answer {
-  color: green;
-}
+
 /* buttons */
 .btn-normal {
   position: relative;
@@ -93,7 +88,7 @@ input[type="radio"]:checked + label {
 }
 .animate-btn {
   animation: btn-pop;
-  animation-duration: 250ms;
+  animation-duration: 200ms;
   animation-timing-function: linear;
 }
 

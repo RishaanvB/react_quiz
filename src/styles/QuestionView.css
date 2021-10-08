@@ -66,11 +66,6 @@
   display: block;
 }
 
-.btn-ok {
-  margin-top: 2rem;
-  color: white;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-}
 .btn-answer {
   font-size: 1rem;
   margin: 0.5rem 0;
@@ -78,7 +73,7 @@
   color: #367dce;
   font-weight: bold;
   background-color: white;
-  transition: color 0.7s, background-color 0.7s;
+  transition: color 0.2s, background-color 0.2s;
   cursor: pointer;
 }
 
