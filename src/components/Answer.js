@@ -1,5 +1,3 @@
-import Button from "./Button";
-import { animateButton } from "../helpers/helpers";
 
 function Answer({ answer, isCorrectAnswer, onHandleAnswerGiven, isChecked }) {
   return (

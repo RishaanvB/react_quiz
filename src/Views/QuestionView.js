@@ -20,7 +20,7 @@ function QuestionView() {
   );
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState("");
-  const [goTonextQuestion, setGoToNextQuestion] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
   const [score, setScore] = useState(0);
 
   console.log(correctAnswer);
@@ -28,7 +28,7 @@ function QuestionView() {
   // getting data from api before render
   useEffect(() => {
     getTriviaData();
-  }, [goTonextQuestion]);
+  }, [currentQuestion]);
 
   // reset styling for btns and shuffle them after new question gets loaded
   useEffect(() => {
@@ -72,7 +72,7 @@ function QuestionView() {
     isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore(1);
 
     setTimeout(() => {
-      setGoToNextQuestion(goTonextQuestion + 1);
+      setCurrentQuestion(currentQuestion + 1);
     }, 300);
   };
 
@@ -98,14 +98,14 @@ function QuestionView() {
       <h1>Score : {score}</h1>
       <div>
         <Question question={question} />
-        <QuestionProgress />
+        <QuestionProgress  currentQuestion={currentQuestion}/>
       </div>
       <div>
         <AnswerList>
           {createWrongAnswers}
           {createCorrectAnswer}
         </AnswerList>
-        {/* <Button handleClick={handlegoToNextQuestion} styles="btn-ok">
+        {/* <Button handleClick={handlecurrentQuestion} styles="btn-ok">
           OK
         </Button> */}
       </div>
