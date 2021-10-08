@@ -49,6 +49,8 @@ function QuestionView() {
   };
 
   const handleAnswerChange = (e) => {
+    console.log(e);
+    e.stopPropagation()
     setSelectedAnswer(e.target.innerText);
     animateButton(e.target.parentNode);
     resetBtnsStyling();

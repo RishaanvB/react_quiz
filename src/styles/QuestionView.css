@@ -11,7 +11,7 @@
 }
 .question {
   padding: 1.5rem 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: white;
   font-weight: lighter;
 }
@@ -71,7 +71,8 @@
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .btn-answer {
-  margin: 1rem 0;
+  margin: .5rem 0;
+  padding: .5rem 1rem;
   color: #367dce;
   font-weight: bold;
   background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
@@ -79,7 +80,9 @@
   transition: color 0.7s, background-color 0.7s;
 }
 .answerbtn-innertext {
-  font-size: 1.3rem;
+  font-size: 1rem;
+  height: max-content;
+  width: 100%;
 }
 
 .selected-answer {
