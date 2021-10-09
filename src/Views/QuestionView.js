@@ -12,13 +12,12 @@ import {
   handleBtnsClickable,
 } from "../helpers/helpers";
 
-function QuestionView({ updateScore, showResultScreen }) {
+function QuestionView({ updateScore, showResultScreen, maxRounds }) {
   // setting hooks
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const maxRounds = 5;
   const delay = 200;
   console.log(correctAnswer);
 

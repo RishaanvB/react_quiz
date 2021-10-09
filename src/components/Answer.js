@@ -1,6 +1,4 @@
-
 function Answer({ answer, isCorrectAnswer, onHandleAnswerGiven, isChecked }) {
-  
   return (
     <button
       onClick={onHandleAnswerGiven}

@@ -1,4 +1,5 @@
 const animateButton = (target) => {
+ 
   target.classList.add("animate-btn");
   setTimeout(() => target.classList.remove("animate-btn"), 250);
 };
