@@ -12,13 +12,12 @@ import {
   handleBtnsClickable,
 } from "../helpers/helpers";
 
-function QuestionView({ updateScore, showResultScreen }) {
+function QuestionView({ updateScore, showResultScreen, maxRounds }) {
   // setting hooks
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const maxRounds = 5;
   const delay = 200;
   console.log(correctAnswer);
 
@@ -62,6 +61,8 @@ function QuestionView({ updateScore, showResultScreen }) {
   };
 
   const handleAnswerGiven = (e) => {
+    // refactor, correct answer is given to element via props.. just check prop to check if answer is correct
+    // also fixes issue with comparing answer with innertext of btn re: special characters in answers/question
     const selectedAnswer = e.target.innerText;
 
     animateButton(e.target);
@@ -91,6 +92,7 @@ function QuestionView({ updateScore, showResultScreen }) {
       answer={correctAnswer}
       isCorrectAnswer={true}
       onHandleAnswerGiven={handleAnswerGiven}
+      // key="3"
     />
   );
 
@@ -108,9 +110,6 @@ function QuestionView({ updateScore, showResultScreen }) {
           {createWrongAnswers}
           {createCorrectAnswer}
         </AnswerList>
-        {/* <Button handleClick={handlecurrentQuestion} styles="btn-ok">
-          OK
-        </Button> */}
       </div>
     </>
   );
