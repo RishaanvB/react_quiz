@@ -13,7 +13,7 @@ function App() {
   const [displayResultView, setDisplayResultView] = useState(false);
 
   const [score, setScore] = useState(0);
-console.log("score is ==>", score);
+  console.log("score is ==>", score);
   const updateScore = (point = 1) => {
     setScore(score + point);
   };
@@ -33,7 +33,7 @@ console.log("score is ==>", score);
     setDisplayQuestionView(false);
   };
   const showResultScreen = () => {
-    console.log("score is ==>", score)
+    console.log("score is ==>", score);
     setDisplayResultView(true);
     setDisplayQuestionView(false);
   };
@@ -46,12 +46,13 @@ console.log("score is ==>", score);
             handleQuestionView={showQuestionView}
           />
         )}
-        {displayQuestionView && <h1>{score}</h1>  }
+        {displayQuestionView && <h1>{score}</h1>}
         {displayQuestionView && (
-            <QuestionView score={score}
-              showResultScreen={showResultScreen}
-              updateScore={updateScore}
-            />
+          <QuestionView
+            score={score}
+            showResultScreen={showResultScreen}
+            updateScore={updateScore}
+          />
         )}
         {displayResultView && <ResultView score={score} />}
         <button style={{ position: "absolute" }} onClick={goHome}>
