@@ -24,9 +24,9 @@ const handleBtnsClickable = (className, action) => {
 };
 
 const shuffleAnswers = () => {
-  const ul = document.querySelector(".answers-list");
-  for (let i = ul.children.length; i >= 0; i--) {
-    ul.appendChild(ul.children[(Math.random() * i) | 0]);
+  const container = document.querySelector(".answers-list");
+  for (let i = container.children.length; i >= 0; i--) {
+    container.appendChild(container.children[(Math.random() * i) | 0]);
   }
 };
 export {
