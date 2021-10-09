@@ -63,3 +63,9 @@ input[type="text"]#username {
     background-color: white;
     color: #367DCE;
 }
+.btn-submit-score .image-icon{
+    position: absolute;
+  top: -27px;
+  right: 2px;
+  width: 80px; 
+}

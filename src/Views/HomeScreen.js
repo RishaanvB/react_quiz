@@ -9,18 +9,20 @@ export default function HomeScreen(props) {
     <>
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
       <h1 className="quiz-title">QUIZKNOWS</h1>
-      <Button
-        imgSrc={imgTrophy}
-        styles="btn-highscore"
-        handleClick={props.handleHighscoreView}>
-        Highscores
-      </Button>
-      <Button
-        imgSrc={imgRocket}
-        styles="btn-start"
-        handleClick={props.handleQuestionView}>
-        Start
-      </Button>
+      <div className="homescreen-btn-container">
+        <Button
+          imgSrc={imgTrophy}
+          styles="btn-highscore"
+          handleClick={props.handleHighscoreView}>
+          Highscores
+        </Button>
+        <Button
+          imgSrc={imgRocket}
+          styles="btn-start"
+          handleClick={props.handleQuestionView}>
+          Start
+        </Button>
+      </div>
     </>
   );
 }
