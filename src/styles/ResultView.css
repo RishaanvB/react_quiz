@@ -52,20 +52,20 @@
   animation-direction: alternate;
 }
 
-input[type="text"]#username {
+input[type='text']#username {
   background-color: white;
   margin-bottom: 1rem;
   padding-left: 1rem;
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
 }
-.btn-submit-score{
-    background-color: white;
-    color: #367DCE;
+.btn-submit-score {
+  background-color: white;
+  color: #367dce;
 }
-.btn-submit-score .image-icon{
-    position: absolute;
+.btn-submit-score .image-icon {
+  position: absolute;
   top: -27px;
   right: 2px;
-  width: 80px; 
+  width: 80px;
 }
