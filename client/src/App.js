@@ -7,15 +7,26 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
 import { animateButton } from './helpers/helpers';
+import { useEffect } from 'react/cjs/react.development';
 
 function App() {
   const [gameState, setGameState] = useState('home');
+  const [isConnected, setIsConnected] = useState('not connected');
 
   const [score, setScore] = useState(0);
   // const [maxRounds, setMaxRounds] = useState(5);
   const maxRounds = 5;
 
-  console.log('score is ==>', score);
+  // connect to api
+  useEffect(() => {
+    fetch('/data')
+      .then((res) => res.json())
+      .then((data) => {
+        setIsConnected(data);
+      });
+  }, []);
+
+  // console.log('score is ==>', score);
   const updateScore = (point = 1) => {
     setScore(score + point);
   };
@@ -71,6 +82,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>{isConnected}</h1>
       <div className="container">
         {displayScreen()}
 
