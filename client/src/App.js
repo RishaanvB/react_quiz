@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 import QuestionView from './views/QuestionView';
@@ -7,7 +7,6 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
 import { animateButton } from './helpers/helpers';
-import { useEffect } from 'react/cjs/react.development';
 
 function App() {
   const [gameState, setGameState] = useState('home');
@@ -17,13 +16,12 @@ function App() {
   // const [maxRounds, setMaxRounds] = useState(5);
   const maxRounds = 5;
 
+  const url = 'users';
   // connect to api
   useEffect(() => {
-    fetch('/data')
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => {
-        setIsConnected(data);
-      });
+      .then((data) => console.log(data));
   }, []);
 
   // console.log('score is ==>', score);
