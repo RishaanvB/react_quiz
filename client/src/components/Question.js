@@ -1,12 +1,12 @@
-import "../styles/QuestionView.css";
+import '../styles/QuestionView.css';
 
 export default function Question(props) {
   const styles = {
-    margin: "auto ",
-    padding: "1.5rem 1rem",
-    fontSize: "1.2rem",
-    color: "white",
-    fontWeight: "lighter",
+    margin: 'auto ',
+    padding: '1.5rem 1rem',
+    fontSize: '1.2rem',
+    color: 'white',
+    fontWeight: 'lighter',
   };
   return (
     <div className="container-question">

@@ -13,7 +13,6 @@ import {
 } from '../helpers/helpers';
 
 function QuestionView({ updateScore, onHandleView, maxRounds }) {
-  // setting hooks
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState('');
@@ -21,7 +20,7 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
   const delay = 200;
   console.log(correctAnswer);
 
-  // getting data from api before render
+  // getting quiz data
   useEffect(() => {
     setTimeout(() => {
       getTriviaData();
@@ -40,9 +39,6 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
     fetch(`https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy`)
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result.results[0].correct_answer);
-        // console.log(result.results[0].category);
-        // console.log(result.results[0].difficulty);
         setQuestion(result.results[0].question);
         setCorrectAnswer(result.results[0].correct_answer);
         setWrongAnswers(result.results[0].incorrect_answers);

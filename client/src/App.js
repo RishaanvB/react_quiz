@@ -6,45 +6,15 @@ import ResultView from './views/ResultView';
 import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
-import { animateButton } from './helpers/helpers';
-
 function App() {
   const [gameState, setGameState] = useState('home');
 
   const [score, setScore] = useState(0);
-  // const [maxRounds, setMaxRounds] = useState(5);
   const maxRounds = 5;
 
-  const url = 'users';
-  // connect to api
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
-
-  // console.log('score is ==>', score);
   const updateScore = (point = 1) => {
     setScore(score + point);
   };
-
-  // const showHighscoreView = (e) => {
-  //   console.log('display highscore view');
-  //   setGameState('highscores');
-  //   animateButton(e.target);
-  // };
-
-  // const showQuestionView = () => {
-  //   console.log('start quiz');
-  //   setGameState('quiz');
-  // };
-  // const goHome = () => {
-  //   setGameState('home');
-  // };
-  // const showResultScreen = () => {
-  //   console.log('score is ==>', score);
-  //   setGameState('result');
-  // };
 
   const handleView = (view) => {
     setGameState(view);

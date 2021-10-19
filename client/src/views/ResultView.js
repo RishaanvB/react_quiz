@@ -1,8 +1,5 @@
-import { useEffect } from 'react/cjs/react.development';
-
 import Button from '../components/Button';
 import '../styles/ResultView.css';
-import { animateButton } from '../helpers/helpers';
 
 import imgStar from '../assets/Star_perspective_matte_s.png';
 import imgFloppyDsk from '../assets/Save_perspective_matte_s.png';
