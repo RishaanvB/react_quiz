@@ -10,7 +10,6 @@ import { animateButton } from './helpers/helpers';
 
 function App() {
   const [gameState, setGameState] = useState('home');
-  const [isConnected, setIsConnected] = useState('not connected');
 
   const [score, setScore] = useState(0);
   // const [maxRounds, setMaxRounds] = useState(5);
@@ -29,33 +28,32 @@ function App() {
     setScore(score + point);
   };
 
-  const showHighscoreView = (e) => {
-    console.log('display highscore view');
-    setGameState('highscores');
-    animateButton(e.target);
-  };
+  // const showHighscoreView = (e) => {
+  //   console.log('display highscore view');
+  //   setGameState('highscores');
+  //   animateButton(e.target);
+  // };
 
-  const showQuestionView = () => {
-    console.log('start quiz');
-    setGameState('quiz');
-  };
-  const goHome = () => {
-    setGameState('home');
-  };
-  const showResultScreen = () => {
-    console.log('score is ==>', score);
-    setGameState('result');
+  // const showQuestionView = () => {
+  //   console.log('start quiz');
+  //   setGameState('quiz');
+  // };
+  // const goHome = () => {
+  //   setGameState('home');
+  // };
+  // const showResultScreen = () => {
+  //   console.log('score is ==>', score);
+  //   setGameState('result');
+  // };
+
+  const handleView = (view) => {
+    setGameState(view);
   };
 
   const displayScreen = () => {
     switch (gameState) {
       case 'home':
-        return (
-          <HomeScreen
-            handleHighscoreView={showHighscoreView}
-            handleQuestionView={showQuestionView}
-          />
-        );
+        return <HomeScreen onHandleView={handleView} />;
       case 'quiz':
         return (
           <>
@@ -63,15 +61,21 @@ function App() {
             <QuestionView
               maxRounds={maxRounds}
               score={score}
-              showResultScreen={showResultScreen}
+              onHandleView={handleView}
               updateScore={updateScore}
             />
           </>
         );
       case 'result':
-        return <ResultView score={score} maxRounds={maxRounds} />;
+        return (
+          <ResultView
+            score={score}
+            maxRounds={maxRounds}
+            onHandleView={handleView}
+          />
+        );
       case 'highscores':
-        return <HighscoreView />;
+        return <HighscoreView onHandleView={handleView} />;
 
       default:
         break;
@@ -80,11 +84,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{isConnected}</h1>
       <div className="container">
         {displayScreen()}
 
-        <button style={{ position: 'absolute' }} onClick={goHome}>
+        <button
+          style={{ position: 'absolute' }}
+          onClick={() => handleView('home')}>
           Home
         </button>
       </div>

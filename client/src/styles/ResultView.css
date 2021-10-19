@@ -58,6 +58,7 @@ input[type='text']#username {
   padding-left: 1rem;
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
+  cursor: auto;
 }
 .btn-submit-score {
   background-color: white;

@@ -1,6 +1,6 @@
 :root {
-  --margarine: "Margarine", cursive;
-  --oswald: "Oswald", sans-serif;
+  --margarine: 'Margarine', cursive;
+  --oswald: 'Oswald', sans-serif;
   height: 100vh;
 }
 * {
@@ -26,24 +26,30 @@
   max-width: 600px;
 }
 
-
 /* buttons */
 .btn-normal {
+  padding: 1rem 2rem;
   position: relative;
-  margin: auto ;
+  margin: auto;
   width: 100%;
   border: none;
   background: none;
-  max-width: 500px;
   border-radius: 5px;
   font-size: 1.5rem;
   box-shadow: 7px 5px 13px rgba(44, 95, 152, 0.65);
   letter-spacing: 0.1rem;
+  cursor: pointer;
 }
 .btn-highscore {
-  margin-bottom: 1rem;
-  color: white;
-  background-color: #ff7e86;
+  font-size: 1rem;
+  min-height: 36px;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  color: #367dce;
+  font-weight: bold;
+  background-color: white;
+  transition: color 0.2s, background-color 0.2s;
+  cursor: pointer;
 }
 .btn-start {
   color: #367dce;
@@ -72,7 +78,7 @@
   width: 80px;
 }
 
-.homescreen-btn-container{
+.homescreen-btn-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

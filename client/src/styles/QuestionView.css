@@ -55,7 +55,7 @@
   top: 0;
   left: 0;
   background-color: #e3c673;
-  content: "";
+  content: '';
   height: 0.6rem;
   border-radius: 10px;
   transition: width ease-out 0.2s;

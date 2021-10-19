@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import Answer from "../components/Answer";
-import AnswerList from "../components/AnswerList";
-import Question from "../components/Question";
-import QuestionProgress from "../components/QuestionProgress";
+import { useEffect, useState } from 'react';
+import Answer from '../components/Answer';
+import AnswerList from '../components/AnswerList';
+import Question from '../components/Question';
+import QuestionProgress from '../components/QuestionProgress';
 
 import {
   resetBtnsStyling,
@@ -10,13 +10,13 @@ import {
   animateButton,
   addClassName,
   handleBtnsClickable,
-} from "../helpers/helpers";
+} from '../helpers/helpers';
 
-function QuestionView({ updateScore, showResultScreen, maxRounds }) {
+function QuestionView({ updateScore, onHandleView, maxRounds }) {
   // setting hooks
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState('');
   const [wrongAnswers, setWrongAnswers] = useState([]);
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const delay = 200;
   console.log(correctAnswer);
@@ -32,11 +32,11 @@ function QuestionView({ updateScore, showResultScreen, maxRounds }) {
   useEffect(() => {
     resetBtnsStyling();
     shuffleAnswers();
-    handleBtnsClickable(".btn-answer", true);
+    handleBtnsClickable('.btn-answer', true);
   }, [question]);
 
   const getTriviaData = () => {
-    console.log("getting data");
+    console.log('getting data');
     fetch(`https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy`)
       .then((response) => response.json())
       .then((result) => {
@@ -54,9 +54,9 @@ function QuestionView({ updateScore, showResultScreen, maxRounds }) {
   const changeBtnColor = (e) => {
     const selectedAnswer = e.target.innerText;
     if (isAnswerCorrect(selectedAnswer, correctAnswer)) {
-      addClassName(e.target, "correct-answer-given");
+      addClassName(e.target, 'correct-answer-given');
     } else {
-      addClassName(e.target, "wrong-answer-given");
+      addClassName(e.target, 'wrong-answer-given');
     }
   };
 
@@ -67,11 +67,11 @@ function QuestionView({ updateScore, showResultScreen, maxRounds }) {
 
     animateButton(e.target);
     changeBtnColor(e);
-    handleBtnsClickable(".btn-answer", false);
+    handleBtnsClickable('.btn-answer', false);
     isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore();
     if (currentQuestion >= maxRounds) {
       setTimeout(() => {
-        showResultScreen(true);
+        onHandleView('result');
       }, delay);
     } else if (currentQuestion < maxRounds) {
       setCurrentQuestion(currentQuestion + 1);
