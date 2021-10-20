@@ -2,21 +2,19 @@ import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
 import Player from './Player';
 import { getOrdinal } from '../helpers/helpers';
+import { fetchHighscores } from '../api_calls/fetchHighscores';
 
 export default function Players() {
   const [playerData, setPlayerData] = useState([]);
 
-  const url = 'http://localhost:5000/users';
-
-  const fetchHighscores = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    setPlayerData(data);
-  };
-
   useEffect(() => {
-    fetchHighscores();
+    displayHighscores();
   }, []);
+
+  const displayHighscores = async () => {
+    const data = await fetchHighscores();
+    await setPlayerData(data);
+  };
 
   const players = playerData.map((player, index) => (
     <Player

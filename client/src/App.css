@@ -30,7 +30,7 @@
 .btn-normal {
   padding: 1rem 2rem;
   position: relative;
-  margin: auto;
+  margin: 1rem auto;
   width: 100%;
   border: none;
   background: none;
@@ -41,14 +41,8 @@
   cursor: pointer;
 }
 .btn-highscore {
-  font-size: 1rem;
-  min-height: 36px;
-  margin: 0.5rem 0;
-  padding: 0.5rem 1rem;
   color: #367dce;
-  font-weight: bold;
-  background-color: white;
-  transition: color 0.2s, background-color 0.2s;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   cursor: pointer;
 }
 .btn-start {
@@ -78,6 +72,12 @@
   width: 80px;
 }
 
+.image-icon-save {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  width: 80px;
+}
 .homescreen-btn-container {
   display: flex;
   flex-direction: column;
@@ -102,4 +102,17 @@
   animation: btn-pop;
   animation-duration: 200ms;
   animation-timing-function: linear;
+}
+
+.scoreForm {
+  position: relative;
+}
+.scoreForm span {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  color: rgb(148, 35, 35);
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  z-index: 1;
 }

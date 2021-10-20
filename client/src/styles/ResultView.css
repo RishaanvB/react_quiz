@@ -56,13 +56,25 @@ input[type='text']#username {
   background-color: white;
   margin-bottom: 1rem;
   padding-left: 1rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding: 1rem;
   cursor: auto;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+input[type='text']#username:focus {
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: 10px 10px 10px #29568d9c;
+  transform: scale(1.03);
 }
 .btn-submit-score {
   background-color: white;
   color: #367dce;
+}
+
+.btn-disabled.btn-submit-score {
+  color: #64646446;
+  cursor: not-allowed;
+  background-color: rgb(167, 167, 167);
 }
 .btn-submit-score .image-icon {
   position: absolute;
