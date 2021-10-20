@@ -1,25 +1,28 @@
 const userModel = require('../models/userModel');
+const { body, validationResult } = require('express-validator');
 
 exports.getUsers = async (req, res, next) => {
-  const users = await userModel.find({}).exec();
+  const users = await userModel.find({}).limit(10).exec();
   console.log(users);
   res.json(users);
-  // const password = await userModel.find().limit(2)
-  // console.log(users, '<--users')
 };
 
-// exports.createUser = async (req, res, next) => {
-//   await userModel.create({
-//     username: req.body.username,
-//     score: req.body.score,
-//   });
-// };
-
-// exports.createUsers = (req, res, next) => {
-//   res.send('This is a post ');
-// };
-
-// userModel.create({ username: 'secondUser', score: 1000 }, (err, result) => {
-//   console.log(err, '<--error');
-//   console.log(result, '<--result');
-// });
+exports.createUser = [
+  body('username')
+    .trim()
+    .isAlphanumeric()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Username should not contain special characters'),
+  (req, res, next) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log('there is an error with creating a user');
+      return;
+    } else {
+      userModel.create({ username: req.body.username, score:5 });
+      console.log('user created')
+    }
+  },
+];
