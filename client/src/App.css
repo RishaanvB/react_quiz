@@ -1,7 +1,10 @@
 :root {
   --margarine: 'Margarine', cursive;
   --oswald: 'Oswald', sans-serif;
-  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 * {
   font-family: var(--oswald);
@@ -15,16 +18,7 @@
 
   font-family: var(--oswald);
 }
-.container {
-  height: 100vh;
-  max-height: 700px;
-  margin: auto auto;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 600px;
-}
+
 
 /* buttons */
 .btn-normal {

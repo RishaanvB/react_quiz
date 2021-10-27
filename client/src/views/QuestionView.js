@@ -18,7 +18,7 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const [amountQuestion, setAmountQuestion] = useState(10);
+  const [amountQuestion, setAmountQuestion] = useState(5);
   const [triviaData, setTriviaData] = useState([]);
 
   // getting quiz data
