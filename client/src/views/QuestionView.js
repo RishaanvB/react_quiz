@@ -19,8 +19,7 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
   const [question, setQuestion] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [amountQuestion, setAmountQuestion] = useState(10);
-  const [triviaData, setTriviaData] = useState([1, 2]);
-  console.log(correctAnswer);
+  const [triviaData, setTriviaData] = useState([]);
 
   // getting quiz data
   useEffect(() => {
@@ -34,71 +33,17 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
   //   handleBtnsClickable('.btn-answer', true);
   // }, [question]);
 
-  const isAnswerCorrect = (selected, correct) => selected === correct && true;
-
-  const changeBtnColor = (e) => {
-    const selectedAnswer = e.target.innerText;
-    if (isAnswerCorrect(selectedAnswer, correctAnswer)) {
-      addClassName(e.target, 'correct-answer-given');
-    } else {
-      addClassName(e.target, 'wrong-answer-given');
-    }
-  };
-
-  const handleAnswerGiven = (e) => {
-    // refactor, correct answer is given to element via props.. just check prop to check if answer is correct
-    // also fixes issue with comparing answer with innertext of btn re: special characters in answers/question
-    const selectedAnswer = e.target.innerText;
-
-    animateButton(e.target);
-    changeBtnColor(e);
-    handleBtnsClickable('.btn-answer', false);
-    isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore();
-    if (currentQuestion >= maxRounds) {
-      onHandleView('result');
-    } else if (currentQuestion < maxRounds) {
-      setCurrentQuestion(currentQuestion + 1);
-    }
-  };
-
-  // const createWrongAnswers = [...Array(3)].map((_, index) => {
-  //   return (
-  //     <Answer
-  //       key={index}
-  //       answer={wrongAnswers[index]}
-  //       onHandleAnswerGiven={handleAnswerGiven}
-  //     />
-  //   );
-  // });
-  // const createCorrectAnswer = (
-  //   <Answer
-  //     answer={correctAnswer}
-  //     isCorrectAnswer={true}
-  //     onHandleAnswerGiven={handleAnswerGiven}
-  //     // key="3"
-  //   />
-  // );
   const triviaCards = triviaData.map((triviaData, index) => (
-    <TriviaCard triviaData={triviaData} key={index} />
+    
+    <TriviaCard
+      triviaData={triviaData}
+      key={index}
+      updateScore={updateScore}
+      maxRounds={maxRounds}
+      onHandleView={onHandleView}
+    />
   ));
-  return (
-    <>
-      {triviaCards}
-      {/* <div>
-        <Question question={question} />
-        <QuestionProgress
-          currentQuestion={currentQuestion}
-          maxRounds={maxRounds}
-        />
-      </div>
-      <div>
-        <AnswerList>
-          {createWrongAnswers}
-          {createCorrectAnswer}
-        </AnswerList>
-      </div> */}
-    </>
-  );
+  return <div className="triviaCard-container">{triviaCards}</div>;
 }
 
 export default QuestionView;

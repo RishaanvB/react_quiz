@@ -59,11 +59,7 @@ function App() {
       <div className="container">
         {displayScreen()}
 
-        <button
-          style={{ position: 'absolute' }}
-          onClick={() => handleView('home')}>
-          Home
-        </button>
+       
       </div>
     </div>
   );

@@ -1,0 +1,64 @@
+:root {
+  --delay: 0.6s;
+}
+
+.triviaCard-container {
+  position: relative;
+}
+
+.triviaCard {
+  position: absolute;
+  /* z-index: 100; */
+  top: 0;
+  left: 0;
+  border: 2px solid red;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: rgb(63, 63, 112);
+  will-change: transform;
+}
+
+.animateCard {
+  animation-name: enlarge, move;
+  animation-duration: var(--delay), 0.8s;
+  animation-delay: 0s, var(--delay);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+.intoView {
+  animation-name: intoView;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes intoView {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-2000px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+@keyframes enlarge {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes move {
+  from {
+    transform: scale(1.05) translateX(0px);
+    /* opacity: 1; */
+  }
+  to {
+    transform: scale(0.9) translateX(2500px);
+    /* opacity: 0; */
+  }
+}
