@@ -7,10 +7,10 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
 function App() {
-  const [gameState, setGameState] = useState('quiz');
+  const [gameState, setGameState] = useState('result');
 
   const [score, setScore] = useState(0);
-  const maxRounds = 5;
+  const maxRounds = 5 ;
 
   const updateScore = (point = 1) => {
     setScore(score + point);

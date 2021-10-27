@@ -1,4 +1,3 @@
-import imgFloppyDsk from '../assets/Save_perspective_matte_s.png';
 import { setHighscore } from '../api_calls/fetchHighscores';
 import { useState } from 'react/cjs/react.development';
 import { useEffect } from 'react';
@@ -32,19 +31,18 @@ export default function Form({ score }) {
       onSubmit={handleSubmitScore}
       action=""
       method="POST">
-      {showFormError() && <FormError inputLength={input.length} />}
       <input
-        className="btn-normal "
+        className="btn"
         type="text"
         name="username"
         id="username"
         placeholder="Your Name"
         value={input}
         onChange={handleChange}
-      />
+        />
+        {showFormError() && <FormError inputLength={input.length} />}
 
-      <button disabled={!isValid} className={!isValid ? "btn-submit-score btn-normal btn-disabled" : "btn-submit-score btn-normal"}>
-        <img className="image-icon-save" src={imgFloppyDsk} alt="" />
+      <button disabled={!isValid} className={!isValid ? "btn-submit-score btn btn-disabled" : "btn-submit-score btn"}>
         Submit Score
       </button>
     </form>

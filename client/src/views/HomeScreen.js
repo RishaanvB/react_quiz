@@ -1,6 +1,5 @@
 import imgLogo from '../assets/FAQ_perspective_matte.png';
 
-import '../styles/buttons.css';
 import '../styles/HomeScreen.css';
 
 export default function HomeScreen(props) {
