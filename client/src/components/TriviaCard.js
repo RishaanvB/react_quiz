@@ -4,10 +4,7 @@ import AnswerList from './AnswerList';
 import Question from './Question';
 import QuestionProgress from './QuestionProgress';
 import Answer from './Answer';
-import {
-  addClassName,
-  handleBtnsClickable,
-} from '../helpers/helpers';
+import { addClassName, handleBtnsClickable } from '../helpers/helpers';
 
 import '../styles/TriviaCard.css';
 
@@ -16,12 +13,9 @@ export const TriviaCard = ({
   updateScore,
   maxRounds,
   onHandleView,
+  onSetCurrentQuestion,
+  currentQuestion,
 }) => {
-//   const [correctAnswer, setCorrectAnswer] = useState('');
-//   const [wrongAnswers, setWrongAnswers] = useState([]);
-//   const [question, setQuestion] = useState('');
-  const [currentQuestion, setCurrentQuestion] = useState(1);
-//   const [amountQuestion, setAmountQuestion] = useState(10);
   const [isGone, setIsGone] = useState(false);
 
   const isAnswerCorrect = (selected, correct) => selected === correct && true;
@@ -39,16 +33,15 @@ export const TriviaCard = ({
     // refactor, correct answer is given to element via props.. just check prop to check if answer is correct
     // also fixes issue with comparing answer with innertext of btn re: special characters in answers/question
     const selectedAnswer = e.target.innerText;
-    console.log(selectedAnswer);
-    setIsGone(true)
-    // animateButton(e.target);
+    setIsGone(true);
     changeBtnColor(e);
-    // handleBtnsClickable('.btn-answer', false);
     isAnswerCorrect(selectedAnswer, triviaData.correct_answer) && updateScore();
     if (currentQuestion >= maxRounds) {
-      onHandleView('result');
+      setTimeout(() => {
+        onHandleView('result');
+      }, 1000);
     } else if (currentQuestion < maxRounds) {
-      setCurrentQuestion(currentQuestion + 1);
+      onSetCurrentQuestion((prevQuestion) => prevQuestion + 1);
     }
   };
 
