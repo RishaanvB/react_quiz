@@ -18,24 +18,17 @@ export const TriviaCard = ({
 }) => {
   const [isGone, setIsGone] = useState(false);
 
-  const isAnswerCorrect = (selected, correct) => selected === correct && true;
-
-  const changeBtnColor = (e) => {
-    const selectedAnswer = e.target.innerText;
-    if (isAnswerCorrect(selectedAnswer, triviaData.correct_answer)) {
-      addClassName(e.target, 'correct-answer-given');
-    } else {
-      addClassName(e.target, 'wrong-answer-given');
-    }
+  const changeBtnColorOnFalse = (e) => {
+    addClassName(e.target, 'wrong-answer-given');
   };
-console.log(triviaData.correct_answer)
-  const handleAnswerGiven = (e) => {
-    // refactor, correct answer is given to element via props.. just check prop to check if answer is correct
-    // also fixes issue with comparing answer with innertext of btn re: special characters in answers/question
-    const selectedAnswer = e.target.innerText;
+  const changeBtnColorOnTrue = (e) => {
+    addClassName(e.target, 'correct-answer-given');
+  };
+  const handleAnswerGiven = (e, isCorrectAnswer) => {
     setIsGone(true);
-    changeBtnColor(e);
-    isAnswerCorrect(selectedAnswer, triviaData.correct_answer) && updateScore();
+    isCorrectAnswer ? changeBtnColorOnTrue(e) : changeBtnColorOnFalse(e);
+
+    isCorrectAnswer && updateScore();
     if (currentQuestion >= maxRounds) {
       setTimeout(() => {
         onHandleView('result');
@@ -67,11 +60,16 @@ console.log(triviaData.correct_answer)
   return (
     <div className={!isGone ? 'triviaCard intoView' : 'triviaCard animateCard'}>
       <Question question={triviaData.question} />
-      <QuestionProgress currentQuestion={''} />
-      <AnswerList>
-        {createWrongAnswers}
-        {createCorrectAnswer}
-      </AnswerList>
+      <div className="bottom-triviaCard">
+        <QuestionProgress
+          currentQuestion={currentQuestion}
+          maxRounds={maxRounds}
+        />
+        <AnswerList>
+          {createWrongAnswers}
+          {createCorrectAnswer}
+        </AnswerList>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 function Answer({ answer, isCorrectAnswer, onHandleAnswerGiven, isChecked }) {
+  isCorrectAnswer && console.log(answer)
   return (
-    <button
-      onClick={onHandleAnswerGiven}
-      className="btn-answer btn-normal"
-      dangerouslySetInnerHTML={{ __html: answer }}></button>
+      <button
+        onClick={(e) => onHandleAnswerGiven(e, isCorrectAnswer)}
+        className="btn btn-answer "
+        dangerouslySetInnerHTML={{ __html: answer }}></button>
   );
 }
 

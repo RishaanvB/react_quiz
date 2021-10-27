@@ -7,7 +7,7 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
 function App() {
-  const [gameState, setGameState] = useState('home');
+  const [gameState, setGameState] = useState('quiz');
 
   const [score, setScore] = useState(0);
   const maxRounds = 5;
@@ -56,11 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="container">
-        {displayScreen()}
-
-       
-      </div>
+      <div className="container">{displayScreen()}</div>
     </div>
   );
 }
