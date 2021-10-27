@@ -15,67 +15,18 @@
 .App {
   text-align: center;
   margin: 0 auto;
+  width: 100%;
+  height: 100%;
 
   font-family: var(--oswald);
 }
 
-
-/* buttons */
-.btn-normal {
-  padding: 1rem 2rem;
-  position: relative;
-  margin: 1rem auto;
-  width: 100%;
-  border: none;
-  background: none;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  box-shadow: 7px 5px 13px rgba(44, 95, 152, 0.65);
-  letter-spacing: 0.1rem;
-  cursor: pointer;
-}
-.btn-highscore {
-  color: #367dce;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  cursor: pointer;
-}
-.btn-start {
-  color: #367dce;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-}
-
-.homescreen-logo {
-  display: inline-block;
-  margin-top: 6rem;
-  text-align: center;
-  width: 224px;
-  height: 224px;
-}
-
-.quiz-title {
-  color: white;
-  font-family: var(--margarine);
-  letter-spacing: 0.3rem;
-  font-weight: 100;
-}
-
-.image-icon {
-  position: absolute;
-  top: -27px;
-  left: 2px;
-  width: 80px;
-}
-
-.image-icon-save {
-  position: absolute;
-  top: 3px;
-  right: 2px;
-  width: 80px;
-}
-.homescreen-btn-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.container {
+  background-image: url('./assets/Group\ 13.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 
 @keyframes btn-pop {
@@ -110,4 +61,3 @@
   font-size: 0.8rem;
   z-index: 1;
 }
-

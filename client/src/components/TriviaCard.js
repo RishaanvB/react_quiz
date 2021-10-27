@@ -28,7 +28,7 @@ export const TriviaCard = ({
       addClassName(e.target, 'wrong-answer-given');
     }
   };
-
+console.log(triviaData.correct_answer)
   const handleAnswerGiven = (e) => {
     // refactor, correct answer is given to element via props.. just check prop to check if answer is correct
     // also fixes issue with comparing answer with innertext of btn re: special characters in answers/question
