@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 import QuestionView from './views/QuestionView';
@@ -7,7 +7,7 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 
 function App() {
-  const [gameState, setGameState] = useState('result');
+  const [gameState, setGameState] = useState('quiz');
 
   const [score, setScore] = useState(0);
   const maxRounds = 5;
@@ -21,31 +21,33 @@ function App() {
   };
 
   const displayScreen = () => {
+    const homeScreen = <HomeScreen onHandleView={handleView} />;
+    const questionScreen = (
+      <QuestionView
+        maxRounds={maxRounds}
+        score={score}
+        onHandleView={handleView}
+        updateScore={updateScore}
+      />
+    );
+    const resultScreen = (
+      <ResultView
+        score={score}
+        maxRounds={maxRounds}
+        onHandleView={handleView}
+      />
+    );
+    const highscoreScreen = <HighscoreView onHandleView={handleView} />;
+
     switch (gameState) {
       case 'home':
-        return <HomeScreen onHandleView={handleView} />;
+        return homeScreen;
       case 'quiz':
-        return (
-          <>
-            <h1>{score}</h1>
-            <QuestionView
-              maxRounds={maxRounds}
-              score={score}
-              onHandleView={handleView}
-              updateScore={updateScore}
-            />
-          </>
-        );
+        return questionScreen;
       case 'result':
-        return (
-          <ResultView
-            score={score}
-            maxRounds={maxRounds}
-            onHandleView={handleView}
-          />
-        );
+        return resultScreen;
       case 'highscores':
-        return <HighscoreView onHandleView={handleView} />;
+        return highscoreScreen;
 
       default:
         break;

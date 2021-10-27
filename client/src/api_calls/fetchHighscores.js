@@ -1,7 +1,7 @@
-const url = 'http://localhost:5000/users';
+const API_URL = 'http://localhost:5000/users';
 
 export const fetchHighscores = async () => {
-  const response = await fetch(url);
+  const response = await fetch(API_URL);
   const data = await response.json();
   return data;
 };
@@ -14,7 +14,7 @@ export const setHighscore = async (data) => {
     headers: { 'Content-Type': 'application/json' },
   };
   try {
-    const result = await fetch(url, options);
+    const result = await fetch(API_URL, options);
     const data = await result.json();
     console.log(data.errors);
   } catch (error) {

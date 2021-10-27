@@ -3,6 +3,7 @@ import Answer from '../components/Answer';
 import AnswerList from '../components/AnswerList';
 import Question from '../components/Question';
 import QuestionProgress from '../components/QuestionProgress';
+import { TriviaCard } from '../components/TriviaCard';
 
 import {
   resetBtnsStyling,
@@ -11,39 +12,27 @@ import {
   addClassName,
   handleBtnsClickable,
 } from '../helpers/helpers';
-
+import { getTriviaData } from '../api_calls/fetchTriviaData';
 function QuestionView({ updateScore, onHandleView, maxRounds }) {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [question, setQuestion] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const delay = 200;
+  const [amountQuestion, setAmountQuestion] = useState(10);
+  const [triviaData, setTriviaData] = useState([1, 2]);
   console.log(correctAnswer);
 
   // getting quiz data
   useEffect(() => {
-    setTimeout(() => {
-      getTriviaData();
-    }, delay);
-  }, [currentQuestion]);
+    getTriviaData(setTriviaData, amountQuestion);
+  }, [amountQuestion]);
 
   // reset styling for btns and shuffle them after new question gets loaded
-  useEffect(() => {
-    resetBtnsStyling();
-    shuffleAnswers();
-    handleBtnsClickable('.btn-answer', true);
-  }, [question]);
-
-  const getTriviaData = () => {
-    console.log('getting data');
-    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&difficulty=easy`)
-      .then((response) => response.json())
-      .then((result) => {
-        setQuestion(result.results[0].question);
-        setCorrectAnswer(result.results[0].correct_answer);
-        setWrongAnswers(result.results[0].incorrect_answers);
-      });
-  };
+  // useEffect(() => {
+  //   resetBtnsStyling();
+  //   // shuffleAnswers();
+  //   handleBtnsClickable('.btn-answer', true);
+  // }, [question]);
 
   const isAnswerCorrect = (selected, correct) => selected === correct && true;
 
@@ -66,35 +55,36 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
     handleBtnsClickable('.btn-answer', false);
     isAnswerCorrect(selectedAnswer, correctAnswer) && updateScore();
     if (currentQuestion >= maxRounds) {
-      setTimeout(() => {
-        onHandleView('result');
-      }, delay);
+      onHandleView('result');
     } else if (currentQuestion < maxRounds) {
       setCurrentQuestion(currentQuestion + 1);
     }
   };
 
-  const createWrongAnswers = [...Array(3)].map((_, index) => {
-    return (
-      <Answer
-        key={index}
-        answer={wrongAnswers[index]}
-        onHandleAnswerGiven={handleAnswerGiven}
-      />
-    );
-  });
-  const createCorrectAnswer = (
-    <Answer
-      answer={correctAnswer}
-      isCorrectAnswer={true}
-      onHandleAnswerGiven={handleAnswerGiven}
-      // key="3"
-    />
-  );
-
+  // const createWrongAnswers = [...Array(3)].map((_, index) => {
+  //   return (
+  //     <Answer
+  //       key={index}
+  //       answer={wrongAnswers[index]}
+  //       onHandleAnswerGiven={handleAnswerGiven}
+  //     />
+  //   );
+  // });
+  // const createCorrectAnswer = (
+  //   <Answer
+  //     answer={correctAnswer}
+  //     isCorrectAnswer={true}
+  //     onHandleAnswerGiven={handleAnswerGiven}
+  //     // key="3"
+  //   />
+  // );
+  const triviaCards = triviaData.map((triviaData, index) => (
+    <TriviaCard triviaData={triviaData} key={index} />
+  ));
   return (
     <>
-      <div>
+      {triviaCards}
+      {/* <div>
         <Question question={question} />
         <QuestionProgress
           currentQuestion={currentQuestion}
@@ -106,7 +96,7 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
           {createWrongAnswers}
           {createCorrectAnswer}
         </AnswerList>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -1,4 +1,3 @@
-import Button from './Button';
 import imgFloppyDsk from '../assets/Save_perspective_matte_s.png';
 import { setHighscore } from '../api_calls/fetchHighscores';
 import { useState } from 'react/cjs/react.development';
