@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import AnswerList from './AnswerList';
 import Question from './Question';
 import QuestionProgress from './QuestionProgress';
 import Answer from './Answer';
-import { addClassName, handleBtnsClickable } from '../helpers/helpers';
+import {
+  addClassName,
+  handleBtnsClickable,
+  shuffleAnswers,
+} from '../helpers/helpers';
 
 import '../styles/TriviaCard.css';
 
@@ -16,19 +20,34 @@ export const TriviaCard = ({
   onSetCurrentQuestion,
   currentQuestion,
 }) => {
-  const [isGone, setIsGone] = useState(false);
+  const [isCardGone, setIsCardGone] = useState(false);
+  const [correctAnswerGiven, setCorrectAnswerGiven] = useState();
 
+  useEffect(() => {
+    shuffleAnswers();
+  }, []);
+  // shuffleAnswers()
   const changeBtnColorOnFalse = (e) => {
     addClassName(e.target, 'wrong-answer-given');
+    setTimeout(() => {
+      setCorrectAnswerGiven('change');
+    }, 50);
   };
   const changeBtnColorOnTrue = (e) => {
     addClassName(e.target, 'correct-answer-given');
   };
-  const handleAnswerGiven = (e, isCorrectAnswer) => {
-    setIsGone(true);
-    isCorrectAnswer ? changeBtnColorOnTrue(e) : changeBtnColorOnFalse(e);
+  const handleBtnAbility = () => {
+    handleBtnsClickable('.btn', 'disable');
+    setTimeout(() => {
+      handleBtnsClickable('.btn', 'enable');
+    }, 1000);
+  };
 
-    isCorrectAnswer && updateScore();
+  const handleBtnColorChange = (e, isCorrectAnswer) => {
+    isCorrectAnswer ? changeBtnColorOnTrue(e) : changeBtnColorOnFalse(e);
+  };
+
+  const handleIsGameFinished = () => {
     if (currentQuestion >= maxRounds) {
       setTimeout(() => {
         onHandleView('result');
@@ -37,8 +56,15 @@ export const TriviaCard = ({
       onSetCurrentQuestion((prevQuestion) => prevQuestion + 1);
     }
   };
+  const handleAnswerGiven = (e, isCorrectAnswer) => {
+    handleBtnAbility();
+    setIsCardGone(true);
+    handleBtnColorChange(e, isCorrectAnswer);
+    isCorrectAnswer && updateScore();
+    handleIsGameFinished();
+  };
 
-  const createWrongAnswers = [...Array(3)].map((_, index) => {
+  const wrongAnswers = [...Array(3)].map((_, index) => {
     return (
       <Answer
         key={index}
@@ -48,17 +74,20 @@ export const TriviaCard = ({
     );
   });
 
-  const createCorrectAnswer = (
+  const correctAnswer = (
     <Answer
       answer={triviaData.correct_answer}
       isCorrectAnswer={true}
       onHandleAnswerGiven={handleAnswerGiven}
-      // key="3"
+      changeBgOnFalsePick={correctAnswerGiven}
     />
   );
 
   return (
-    <div className={!isGone ? 'triviaCard intoView' : 'triviaCard animateCard'}>
+    <div
+      className={
+        !isCardGone ? 'triviaCard intoView' : 'triviaCard animateCard'
+      }>
       <Question question={triviaData.question} />
       <div className="bottom-triviaCard">
         <QuestionProgress
@@ -66,8 +95,8 @@ export const TriviaCard = ({
           maxRounds={maxRounds}
         />
         <AnswerList>
-          {createWrongAnswers}
-          {createCorrectAnswer}
+          {wrongAnswers}
+          {correctAnswer}
         </AnswerList>
       </div>
     </div>

@@ -1,10 +1,19 @@
-function Answer({ answer, isCorrectAnswer, onHandleAnswerGiven, isChecked }) {
-  isCorrectAnswer && console.log(answer)
+function Answer({
+  answer,
+  isCorrectAnswer,
+  onHandleAnswerGiven,
+  isChecked,
+  changeBgOnFalsePick,
+}) {
   return (
-      <button
-        onClick={(e) => onHandleAnswerGiven(e, isCorrectAnswer)}
-        className="btn btn-answer "
-        dangerouslySetInnerHTML={{ __html: answer }}></button>
+    <button
+      onClick={(e) => onHandleAnswerGiven(e, isCorrectAnswer)}
+      className={
+        changeBgOnFalsePick === 'change'
+          ? 'btn btn-answer show-correct-answer'
+          : 'btn btn-answer '
+      }
+      dangerouslySetInnerHTML={{ __html: answer }}></button>
   );
 }
 

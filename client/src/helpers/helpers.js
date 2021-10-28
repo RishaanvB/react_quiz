@@ -15,19 +15,29 @@ const resetBtnsStyling = () => {
   });
 };
 
-const handleBtnsClickable = (className, action) => {
-  const btns = document.querySelectorAll(className);
+const handleBtnsClickable = (selector, action) => {
+  const btns = document.querySelectorAll(selector);
 
   btns.forEach((btn) => {
-    action ? (btn.disabled = false) : (btn.disabled = true);
+    if (action === 'enable') {
+      btn.disabled = false;
+    } else if (action === 'disable') {
+      btn.disabled = true;
+    } else {
+      throw new Error(
+        'Second argument is incorrect or missing, choose either "enable" or "disable" '
+      );
+    }
   });
 };
 
 const shuffleAnswers = () => {
-  const container = document.querySelector('.answers-list');
-  for (let i = container.children.length; i >= 0; i--) {
-    container.appendChild(container.children[(Math.random() * i) | 0]);
-  }
+  const containers = document.querySelectorAll('.answers-list');
+  containers.forEach((container) => {
+    for (let i = container.children.length; i >= 0; i--) {
+      container.appendChild(container.children[(Math.random() * i) | 0]);
+    }
+  });
 };
 
 const getOrdinal = (position) => {

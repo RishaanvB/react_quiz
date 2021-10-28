@@ -1,5 +1,3 @@
-import '../styles/QuestionView.css';
-
 export default function Question(props) {
   const styles = {
     margin: 'auto ',

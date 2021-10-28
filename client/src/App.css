@@ -29,10 +29,10 @@
   height: 100vh;
 }
 
-.btn{
+.btn {
   padding: 1rem 3rem;
   position: relative;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
   width: 90%;
   border: none;
   background: white;
@@ -40,6 +40,7 @@
   box-shadow: 7px 5px 13px rgba(44, 95, 152, 0.65);
   letter-spacing: 0.1rem;
   cursor: pointer;
+  transition: color 0.5s, background-color 0.5s, box-shadow 0.5s;
 }
 
 @keyframes btn-pop {
@@ -61,5 +62,3 @@
   animation-duration: 200ms;
   animation-timing-function: linear;
 }
-
-

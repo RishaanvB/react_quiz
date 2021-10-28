@@ -44,7 +44,6 @@
   animation-fill-mode: forwards;
 }
 
-
 /* answersblock */
 
 /* question.js */
@@ -117,6 +116,9 @@
   text-align: center;
   display: block;
 }
+.bottom-triviaCard {
+  width: 100%;
+}
 
 .btn-answer {
   font-size: 1rem;
@@ -126,7 +128,6 @@
   color: #367dce;
   font-weight: bold;
   background-color: white;
-  transition: color 0.2s, background-color 0.2s;
   cursor: pointer;
 }
 
@@ -138,8 +139,11 @@
   background-color: #972727;
   color: white;
 }
-
-
+.btn.show-correct-answer {
+  background-color: #858988;
+  color: white;
+  box-shadow: 0px 0px 20px 20px #00000029;
+}
 
 @keyframes intoView {
   from {
