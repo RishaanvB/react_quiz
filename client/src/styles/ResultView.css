@@ -61,7 +61,7 @@ input[type='text']#username:focus {
   background-color: rgb(167, 167, 167);
 }
 
-.scoreForm{
+.scoreForm {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -69,16 +69,12 @@ input[type='text']#username:focus {
   align-items: center;
 }
 
-
 .scoreForm p {
- 
   color: rgb(148, 35, 35);
   padding: 0.2rem;
   font-size: 0.8rem;
   z-index: 1;
 }
 
-
-.btn-restart{
-  
+.btn-restart {
 }

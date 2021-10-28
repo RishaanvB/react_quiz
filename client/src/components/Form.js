@@ -2,10 +2,13 @@ import { setHighscore } from '../api_calls/fetchHighscores';
 import { useState } from 'react/cjs/react.development';
 import { useEffect, useRef } from 'react';
 import FormError from './FormError';
-export default function Form({ score }) {
+export default function Form({
+  score,
+  handleScoreSubmission,
+  isScoreSubmitted,
+}) {
   const [isValid, setIsValid] = useState(false);
   const [input, setInput] = useState('');
-  const [scoreSubmitted, setScoreSubmitted] = useState(false);
   const inputEl = useRef(null);
 
   useEffect(() => validate());
@@ -27,7 +30,7 @@ export default function Form({ score }) {
   const handleSubmitScore = (e) => {
     e.preventDefault();
     const username = e.target.username.value;
-    setScoreSubmitted(true);
+    handleScoreSubmission();
     setHighscore({ username: username, score: score });
   };
 
@@ -43,16 +46,6 @@ export default function Form({ score }) {
     </button>
   );
 
-  const restartGameBtnEl = (
-    <button className="btn btn-restart" key="restart">
-      Restart
-    </button>
-  );
-  const displayHighscoreBtnEl = (
-    <button className="btn btn-goto-highscores" key="highscore">
-      Highscores
-    </button>
-  );
   const textInputEl = (
     <input
       className="btn"
@@ -67,14 +60,16 @@ export default function Form({ score }) {
   );
 
   return (
-    <form
-      className="scoreForm"
-      onSubmit={handleSubmitScore}
-      action=""
-      method="POST">
-      {!scoreSubmitted && textInputEl}
-      {showFormError() && <FormError inputLength={input.length} />}
-      {scoreSubmitted ? [restartGameBtnEl, displayHighscoreBtnEl] : submitBtnEl}
-    </form>
+    <>
+      <form
+        className="scoreForm"
+        onSubmit={handleSubmitScore}
+        action=""
+        method="POST">
+        {!isScoreSubmitted && textInputEl}
+        {showFormError() && <FormError inputLength={input.length} />}
+        {!isScoreSubmitted && submitBtnEl}
+      </form>
+    </>
   );
 }
