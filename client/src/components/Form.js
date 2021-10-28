@@ -43,18 +43,28 @@ export default function Form({ score }) {
     </button>
   );
 
-  const restartGameBtnEl = <button key='restart'>Restart</button>;
-  const displayHighscoreBtnEl = <button key='highscore'>Highscores</button>;
-  const textInputEl = (<input
-    className="btn"
-    type="text"
-    name="username"
-    id="username"
-    placeholder="Your Name"
-    value={input}
-    onChange={handleChange}
-    ref={inputEl}
-  />)
+  const restartGameBtnEl = (
+    <button className="btn btn-restart" key="restart">
+      Restart
+    </button>
+  );
+  const displayHighscoreBtnEl = (
+    <button className="btn btn-goto-highscores" key="highscore">
+      Highscores
+    </button>
+  );
+  const textInputEl = (
+    <input
+      className="btn"
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Your Name"
+      value={input}
+      onChange={handleChange}
+      ref={inputEl}
+    />
+  );
 
   return (
     <form

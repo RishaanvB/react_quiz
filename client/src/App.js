@@ -5,12 +5,18 @@ import QuestionView from './views/QuestionView';
 import ResultView from './views/ResultView';
 import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
-
+import { useEffect } from 'react';
+import { checkGameState } from './helpers/helpers';
 function App() {
-  const [gameState, setGameState] = useState('home');
+  const [gameState, setGameState] = useState('result');
 
   const [score, setScore] = useState(0);
-  const maxRounds = 5 ;
+  
+  useEffect(() => {
+    checkGameState(gameState);
+  });
+  
+  const maxRounds = 5;
 
   const updateScore = (point = 1) => {
     setScore(score + point);

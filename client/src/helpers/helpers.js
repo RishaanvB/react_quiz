@@ -44,6 +44,15 @@ const getOrdinal = (position) => {
   const ordinals = ['st', 'nd', 'rd', 'th'];
   return position < 4 ? ordinals[position] : ordinals[3];
 };
+
+const checkGameState = (state) => {
+  const gameStates = ['home', 'quiz', 'result', 'highscores'];
+  if (!gameStates.includes(state)) {
+    throw new Error(
+      'Invalid gamestate!!!, choose one of the following in App.js: home, quiz, result, highscores'
+    );
+  }
+};
 export {
   getOrdinal,
   animateButton,
@@ -51,4 +60,5 @@ export {
   resetBtnsStyling,
   shuffleAnswers,
   handleBtnsClickable,
+  checkGameState
 };
