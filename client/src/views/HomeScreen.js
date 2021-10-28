@@ -1,8 +1,12 @@
+import { useEffect } from 'react/cjs/react.development';
 import imgLogo from '../assets/FAQ_perspective_matte.png';
 
 import '../styles/HomeScreen.css';
 
 export default function HomeScreen(props) {
+  useEffect(() => {
+    document.title = 'Quiz Home'
+  })
   return (
     <div className="homescreen">
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />

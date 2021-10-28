@@ -12,6 +12,10 @@ function QuestionView({ updateScore, onHandleView, maxRounds }) {
     getTriviaData(setTriviaData, amountQuestion);
   }, [amountQuestion]);
 
+  useEffect(() => {
+    document.title = `Question #${currentQuestion}`;
+  }, [currentQuestion]);
+
   const triviaCards = triviaData.map((triviaData, index) => (
     <TriviaCard
       triviaData={triviaData}

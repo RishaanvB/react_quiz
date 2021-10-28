@@ -3,8 +3,12 @@ import '../styles/ResultView.css';
 import imgStar from '../assets/Star_perspective_matte_s.png';
 import imgTrophy from '../assets/trophy.svg';
 import Form from '../components/Form';
+import { useEffect } from 'react/cjs/react.development';
 export default function ResultView({ maxRounds, score }) {
+  useEffect(() => (document.title = 'Results!'));
+
   const totalScorePercentage = (score / maxRounds) * 100;
+
   return (
     <div className="result-screen-container intoView">
       <section className="star-images-container">
@@ -18,7 +22,7 @@ export default function ResultView({ maxRounds, score }) {
         </h3>
         <h2>{totalScorePercentage}% CORRECT!</h2>
       </div>
-      <img className='trophy' src={imgTrophy} alt="trophy" />
+      <img className="trophy" src={imgTrophy} alt="trophy" />
       <Form score={score} />
     </div>
   );
