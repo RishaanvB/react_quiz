@@ -3,7 +3,7 @@ import imgClipboard from '../assets/Clipboard_perspective_matte_s.png';
 
 import Players from '../components/Players';
 import Button from '../components/Button';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 
 export default function HighscoreView(props) {
   useEffect(() => (document.title = 'Highscores'));

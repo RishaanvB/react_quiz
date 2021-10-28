@@ -1,4 +1,4 @@
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import imgLogo from '../assets/FAQ_perspective_matte.png';
 
 import '../styles/HomeScreen.css';

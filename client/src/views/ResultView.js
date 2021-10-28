@@ -3,7 +3,7 @@ import '../styles/ResultView.css';
 import imgStar from '../assets/Star_perspective_matte_s.png';
 import imgTrophy from '../assets/trophy.svg';
 import Form from '../components/Form';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 export default function ResultView({ maxRounds, score }) {
   useEffect(() => (document.title = 'Results!'));
 
