@@ -1,13 +1,19 @@
 import { setHighscore } from '../api_calls/fetchHighscores';
 import { useState } from 'react/cjs/react.development';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import FormError from './FormError';
 export default function Form({ score }) {
   const [isValid, setIsValid] = useState(false);
   const [input, setInput] = useState('');
-
+  const inputEl = useRef(null);
+  
   useEffect(() => validate());
-
+  
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
+  
+  
   const validate = () => {
     input.match(/^[a-zA-Z0-9_]{1,8}$/) && setIsValid(true);
     !input.match(/^[a-zA-Z0-9_]{1,8}$/) && setIsValid(false);
@@ -39,10 +45,17 @@ export default function Form({ score }) {
         placeholder="Your Name"
         value={input}
         onChange={handleChange}
-        />
-        {showFormError() && <FormError inputLength={input.length} />}
+        ref={inputEl}
+      />
+      {showFormError() && <FormError inputLength={input.length} />}
 
-      <button disabled={!isValid} className={!isValid ? "btn-submit-score btn btn-disabled" : "btn-submit-score btn"}>
+      <button
+        disabled={!isValid}
+        className={
+          !isValid
+            ? 'btn-submit-score btn btn-disabled'
+            : 'btn-submit-score btn'
+        }>
         Submit Score
       </button>
     </form>
