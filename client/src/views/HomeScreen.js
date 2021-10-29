@@ -14,7 +14,7 @@ export default function HomeScreen(props) {
       <div className="homescreen-btn-container">
         <button
           className="btn btn-start"
-          onClick={() => props.onHandleView('quiz')}>
+          onClick={props.resetGame}>
           Start
         </button>
         <button

@@ -8,17 +8,13 @@ export default function ResultView({
   maxRounds,
   score,
   handleView,
-  resetScore,
+  resetGame,
   setCurrentQuestion,
 }) {
   useEffect(() => (document.title = 'Results!'));
   const [isScoreSubmitted, setisScoreSubmitted] = useState(false);
 
-  const resetGame = () => {
-    resetScore();
-    setCurrentQuestion(1);
-    handleView('quiz');
-  };
+
 
   const totalScorePercentage = (score / maxRounds) * 100;
   const restartGameBtnEl = (

@@ -13,6 +13,12 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
 
+  const resetGame = () => {
+    resetScore();
+    setCurrentQuestion(1);
+    handleView('quiz');
+  };
+
   const maxRounds = 5;
 
   useEffect(() => {
@@ -30,7 +36,7 @@ function App() {
   };
 
   const displayScreen = () => {
-    const homeScreen = <HomeScreen onHandleView={handleView} />;
+    const homeScreen = <HomeScreen onHandleView={handleView} resetGame={resetGame} />;
     const questionScreen = (
       <QuestionView
         maxRounds={maxRounds}
@@ -46,8 +52,9 @@ function App() {
         score={score}
         maxRounds={maxRounds}
         handleView={handleView}
-        resetScore={resetScore}
+        resetGame={resetGame}
         setCurrentQuestion={setCurrentQuestion}
+
       />
     );
     const highscoreScreen = <HighscoreView onHandleView={handleView} />;
