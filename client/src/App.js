@@ -8,7 +8,7 @@ import HomeScreen from './views/HomeScreen';
 import { useEffect } from 'react';
 import { checkGameState } from './helpers/helpers';
 function App() {
-  const [gameState, setGameState] = useState('home');
+  const [gameState, setGameState] = useState('highscores');
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(1);
 

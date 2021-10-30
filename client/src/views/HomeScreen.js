@@ -8,7 +8,7 @@ export default function HomeScreen(props) {
     document.title = 'Quiz Home'
   })
   return (
-    <div className="homescreen">
+    <div className="homescreen intoView">
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
       <h1 className="quiz-title">QUIZKNOWS</h1>
       <div className="homescreen-btn-container">

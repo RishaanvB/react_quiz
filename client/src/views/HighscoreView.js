@@ -8,10 +8,10 @@ import { useEffect } from 'react';
 export default function HighscoreView(props) {
   useEffect(() => (document.title = 'Highscores'));
   return (
-    <>
-      <div className="highscores-container">
-        <img src={imgClipboard} className="clipboard-icon" alt="" />
+    <div className="highscores-container intoView">
+      {/* <img src={imgClipboard} className="clipboard-icon" alt="" /> */}
 
+      <div className="metadata-container">
         <div className="highscores-metadata">
           <p>Pos.</p>
           <p>Name</p>
@@ -21,11 +21,10 @@ export default function HighscoreView(props) {
           <Players />
         </div>
       </div>
-      <Button
-        styles="btn-go-back"
-        handleClick={() => props.onHandleView('home')}>
-        Go Back
-      </Button>
-    </>
+
+      <button className="btn" onClick={() => props.onHandleView('home')}>
+        Back to Home
+      </button>
+    </div>
   );
 }

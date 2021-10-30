@@ -5,6 +5,7 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
+  
 }
 * {
   font-family: var(--oswald);
@@ -17,16 +18,17 @@
   margin: 0 auto;
   width: 100%;
   height: 100%;
+  
 
   font-family: var(--oswald);
 }
 
 .container {
-  background-image: url('./assets/Group\ 13.png');
+  /* background-image: url('./assets/Group\ 13.png');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; */
 }
 
 .btn {
