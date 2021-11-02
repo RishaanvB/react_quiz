@@ -31,7 +31,7 @@ export default function Form({
     e.preventDefault();
     const username = e.target.username.value;
     handleScoreSubmission();
-    setHighscore({ username: username, score: score });
+    // setHighscore({ username: username, score: score });
   };
 
   const showFormError = () => (input.length > 0 && !isValid ? true : false);

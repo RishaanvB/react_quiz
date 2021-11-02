@@ -4,6 +4,9 @@ import imgStar from '../assets/Star_perspective_matte_s.png';
 import imgTrophy from '../assets/trophy.svg';
 import Form from '../components/Form';
 import { useEffect, useState } from 'react';
+import Modal from '../components/modals/Modal';
+import { Backdrop } from '../components/Backdrop';
+
 export default function ResultView({
   maxRounds,
   score,
@@ -13,8 +16,7 @@ export default function ResultView({
 }) {
   useEffect(() => (document.title = 'Results!'));
   const [isScoreSubmitted, setisScoreSubmitted] = useState(false);
-
-
+  const [openModal, setOpenModal] = useState(false);
 
   const totalScorePercentage = (score / maxRounds) * 100;
   const restartGameBtnEl = (
@@ -25,6 +27,7 @@ export default function ResultView({
 
   const handleScoreSubmission = () => {
     setisScoreSubmitted(true);
+    setOpenModal(true);
   };
   const displayHighscoreBtnEl = (
     <button
@@ -55,6 +58,11 @@ export default function ResultView({
         isScoreSubmitted={isScoreSubmitted}
       />
       {isScoreSubmitted && [restartGameBtnEl, displayHighscoreBtnEl]}
+      {openModal && (
+        <Backdrop handleClose={() => setOpenModal(false)}>
+          <Modal handleClose={() => setOpenModal(false)} />
+        </Backdrop>
+      )}
     </div>
   );
 }
