@@ -6,22 +6,36 @@ import HighscoreView from './views/HighscoreView';
 import HomeScreen from './views/HomeScreen';
 import { useEffect, useState } from 'react';
 import { checkGameState } from './helpers/helpers';
+import { fetchToken } from './api_calls/fetchToken';
 function App() {
-  const [gameState, setGameState] = useState('result');
+  const [gameState, setGameState] = useState('home');
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [token, setToken] = useState(null);
 
   const resetGame = () => {
     resetScore();
     setCurrentQuestion(1);
     handleView('quiz');
   };
+  const checkToken = () => (localStorage.getItem('token') ? true : false);
+
+  const createToken = async () => {
+    if (checkToken) {
+      setToken(localStorage.getItem('token'));
+    }
+    if (!checkToken) {
+      const newToken = await fetchToken();
+      setToken(newToken);
+      localStorage.setItem('newToken', newToken);
+    }
+  };
 
   const maxRounds = 2;
 
   useEffect(() => {
     checkGameState(gameState);
-  });
+  }, [gameState]);
 
   const resetScore = () => setScore(0);
 
