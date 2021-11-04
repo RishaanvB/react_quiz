@@ -21,20 +21,20 @@
   font-family: var(--oswald);
 }
 .container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   width: clamp(250px, 100%, 440px);
-  margin: auto;
+  margin: 2rem auto;
 }
 .btn {
   padding: 1rem 3rem;
   position: relative;
   margin: 0.5rem auto;
-  width: clamp(300px, 100%, 90vw);
+  width: clamp(300px, 100%, 90%);
   /* max-width: 90vw; */
   border: none;
-  background: white;
+  background: rgb(247, 247, 247);
   border-radius: 5px;
   box-shadow: 7px 5px 13px rgba(44, 95, 152, 0.65);
   letter-spacing: 0.1rem;
