@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/users';
+
+const API_URL = 'https://react-quiz-backend.herokuapp.com/users';
 
 export const fetchHighscores = async () => {
   const response = await fetch(API_URL);
