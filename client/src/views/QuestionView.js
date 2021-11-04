@@ -32,7 +32,7 @@ function QuestionView({
       currentQuestion={currentQuestion}
     />
   ));
-  return <div className="triviaCard-container">{triviaCards}</div>;
+  return <>{triviaCards}</>;
 }
 
 export default QuestionView;

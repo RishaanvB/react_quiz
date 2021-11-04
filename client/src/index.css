@@ -1,7 +1,6 @@
-
-
 body {
-  background-image: url('./assets/Group\ 13.png');
+  /* background-image: url('./assets/Group\ 13.png'); */
+  background-color: #629bde;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
