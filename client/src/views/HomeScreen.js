@@ -11,7 +11,7 @@ export default function HomeScreen(props) {
     <div className="homescreen intoView">
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
       <h1 className="quiz-title">QUIZKNOWS</h1>
-      <div className="homescreen-btn-container">
+      <div>
         <button
           className="btn btn-start"
           onClick={props.resetGame}>

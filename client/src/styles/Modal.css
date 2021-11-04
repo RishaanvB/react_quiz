@@ -1,0 +1,15 @@
+.modal {
+  padding: 2rem 1rem;
+  background: rgb(241, 241, 241);
+  width: clamp(50%, 500px, 80%);
+  border-radius: 10px;
+}
+.modal-text {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.btn-modal {
+  background-color: rgb(101 153 215);
+  color: white;
+}

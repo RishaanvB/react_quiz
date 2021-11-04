@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { TriviaCard } from '../components/TriviaCard';
 
 import { getTriviaData } from '../api_calls/fetchTriviaData';
-import { fetchToken } from '../api_calls/fetchToken';
 function QuestionView({
   updateScore,
   onHandleView,
@@ -10,14 +9,11 @@ function QuestionView({
   currentQuestion,
   setCurrentQuestion,
 }) {
-  const [amountQuestion, setAmountQuestion] = useState(5);
+  const [amountQuestion, setAmountQuestion] = useState(maxRounds);
   const [triviaData, setTriviaData] = useState([]);
-  const resetGame = () => {
-    setCurrentQuestion(1);
-  };
+
   // getting quiz data
   useEffect(() => {
-    
     getTriviaData(setTriviaData, amountQuestion);
   }, [amountQuestion]);
 

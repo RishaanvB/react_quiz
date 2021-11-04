@@ -20,12 +20,19 @@
 
   font-family: var(--oswald);
 }
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(250px, 100%, 440px);
+  margin: auto;
+}
 .btn {
   padding: 1rem 3rem;
   position: relative;
   margin: 0.5rem auto;
-  width: 90%;
+  width: clamp(300px, 100%, 90vw);
+  /* max-width: 90vw; */
   border: none;
   background: white;
   border-radius: 5px;
@@ -34,8 +41,6 @@
   cursor: pointer;
   transition: color 0.5s, background-color 0.5s, box-shadow 0.5s;
 }
-
-
 
 @keyframes btn-pop {
   0% {
@@ -73,12 +78,6 @@
   z-index: 1000;
 }
 
-.modal {
-  padding: 2rem 4rem;
-  background: rgb(145, 159, 180);
-  width: clamp(50%, 500px, 80%);
-  border-radius: 10px;
-}
 @keyframes backdrop {
   from {
     opacity: 0;

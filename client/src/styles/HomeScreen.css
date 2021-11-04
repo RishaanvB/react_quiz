@@ -1,28 +1,23 @@
-.homescreen-btn-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.homescreen-logo {
+  display: inline-block;
+  margin-top: 6rem;
+  text-align: center;
+  width: 224px;
+  height: 224px;
+}
 
-  .homescreen-logo {
-    display: inline-block;
-    margin-top: 6rem;
-    text-align: center;
-    width: 224px;
-    height: 224px;
-  }
-  
-  .quiz-title {
-    color: white;
-    font-family: var(--margarine);
-    letter-spacing: 0.3rem;
-    font-weight: 100;
-  }
-  
-.homescreen{
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
+.quiz-title {
+  color: white;
+  font-family: var(--margarine);
+  letter-spacing: 0.3rem;
+  font-weight: 100;
+  margin-bottom: 2rem;
+}
+
+.homescreen {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }

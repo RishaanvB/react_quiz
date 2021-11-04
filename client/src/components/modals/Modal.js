@@ -1,9 +1,13 @@
+import '../../styles/Modal.css';
+
 const Modal = (props) => {
   console.log(props);
   return (
     <section className="modal" onClick={(e) => e.stopPropagation()}>
-      <p>Your score has been submitted!</p>
-      <button className="btn " onClick={() => props.handleClose(false)}>
+      <p className="modal-text">Your score has been submitted!</p>
+      <button
+        className="btn btn-modal"
+        onClick={() => props.handleClose(false)}>
         OK
       </button>
     </section>
