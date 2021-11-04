@@ -18,8 +18,7 @@
   flex-direction: column;
   width: clamp(300px, 100%, 460px);
   height: clamp(100vh, 100vh, 1000px);
-
-  background-color: #629bde;
+  background-image: url('../assets/Group\ 13.png');
 
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,12 +40,8 @@
   animation-fill-mode: forwards;
 }
 
-/* answersblock */
-
-/* question.js */
-
 .container-question {
-  width: 100%;
+  width: 90%;
   min-height: 100px;
   display: flex;
   margin: 0 auto;
@@ -171,5 +166,15 @@
   to {
     transform: scale(0.9) translateX(2500px);
     opacity: 0;
+  }
+}
+
+@media (min-width: 680px) {
+  .triviaCard {
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    height: clamp(500px, 50%, 60vh);
+    margin-top: 4rem;
+    padding: 2rem;
+    box-shadow: 3px 3px 10px 10px rgba(224, 224, 224, 0.021);
   }
 }

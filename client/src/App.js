@@ -17,7 +17,6 @@ function App() {
     checkGameState(gameState);
   }, [gameState]);
 
-
   const resetScore = () => setScore(0);
   const resetGame = () => {
     resetScore();

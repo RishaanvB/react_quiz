@@ -16,7 +16,7 @@ export default function ResultView({
 }) {
   useEffect(() => (document.title = 'Results!'));
   const [isScoreSubmitted, setisScoreSubmitted] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
 
   const totalScorePercentage = (score / maxRounds) * 100;
   const restartGameBtnEl = (
@@ -39,30 +39,32 @@ export default function ResultView({
   );
 
   return (
-    <div className="result-screen-container intoView">
-      <section className="star-images-container">
-        <img className="star-image first" src={imgStar} alt="star" />
-        <img className="star-image second" src={imgStar} alt="star" />
-        <img className="star-image third" src={imgStar} alt="star" />
-      </section>
-      <div className="results-tally">
-        <h3>
-          {score}/{maxRounds}
-        </h3>
-        <h2>{totalScorePercentage}% CORRECT!</h2>
+    <>
+      <div className="result-screen-container intoView">
+        <section className="star-images-container">
+          <img className="star-image first" src={imgStar} alt="star" />
+          <img className="star-image second" src={imgStar} alt="star" />
+          <img className="star-image third" src={imgStar} alt="star" />
+        </section>
+        <div className="results-tally">
+          <h3>
+            {score}/{maxRounds}
+          </h3>
+          <h2>{totalScorePercentage}% CORRECT!</h2>
+        </div>
+        <img className="trophy" src={imgTrophy} alt="trophy" />
+        <Form
+          score={score}
+          handleScoreSubmission={handleScoreSubmission}
+          isScoreSubmitted={isScoreSubmitted}
+        />
+        {isScoreSubmitted && [restartGameBtnEl, displayHighscoreBtnEl]}
       </div>
-      <img className="trophy" src={imgTrophy} alt="trophy" />
-      <Form
-        score={score}
-        handleScoreSubmission={handleScoreSubmission}
-        isScoreSubmitted={isScoreSubmitted}
-      />
-      {isScoreSubmitted && [restartGameBtnEl, displayHighscoreBtnEl]}
       {openModal && (
         <Backdrop handleClose={() => setOpenModal(false)}>
           <Modal handleClose={() => setOpenModal(false)} />
         </Backdrop>
       )}
-    </div>
+    </>
   );
 }
