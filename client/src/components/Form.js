@@ -1,6 +1,5 @@
 import { setHighscore } from '../api_calls/fetchHighscores';
-import { useState } from 'react/cjs/react.development';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FormError from './FormError';
 export default function Form({
   score,

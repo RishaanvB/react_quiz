@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import Player from './Player';
 import { getOrdinal } from '../helpers/helpers';
 import { fetchHighscores } from '../api_calls/fetchHighscores';

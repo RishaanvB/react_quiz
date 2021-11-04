@@ -11,8 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-const collectionName = 'quiz';
-const URI = `mongodb+srv://rishaan:${process.env.MONGO_PASS}@cluster0.nektk.mongodb.net/${collectionName}?retryWrites=true&w=majority`;
+app.get('/', (req, res) => {
+  res.send('Highscore data');
+});
+
+const URI = process.env.URI;
 const PORT = process.env.PORT || 5000;
 
 async function main() {
