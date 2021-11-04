@@ -6,8 +6,6 @@ export default function HighscoreView(props) {
   useEffect(() => (document.title = 'Highscores'));
   return (
     <div className="highscores-container intoView">
-      {/* <img src={imgClipboard} className="clipboard-icon" alt="" /> */}
-
       <div className="metadata-container">
         <div className="highscores-metadata">
           <p>Pos.</p>

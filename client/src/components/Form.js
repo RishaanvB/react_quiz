@@ -21,6 +21,7 @@ export default function Form({
     input.match(/^[a-zA-Z0-9_]{1,8}$/) && setIsValid(true);
     !input.match(/^[a-zA-Z0-9_]{1,8}$/) && setIsValid(false);
   };
+  const showFormError = () => (input.length > 0 && !isValid ? true : false);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -31,10 +32,8 @@ export default function Form({
     e.preventDefault();
     const username = e.target.username.value;
     handleScoreSubmission();
-    // setHighscore({ username: username, score: score });
+    setHighscore({ username: username, score: score });
   };
-
-  const showFormError = () => (input.length > 0 && !isValid ? true : false);
 
   const submitBtnEl = (
     <button

@@ -16,7 +16,7 @@ export default function ResultView({
 }) {
   useEffect(() => (document.title = 'Results!'));
   const [isScoreSubmitted, setisScoreSubmitted] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   const totalScorePercentage = (score / maxRounds) * 100;
   const restartGameBtnEl = (

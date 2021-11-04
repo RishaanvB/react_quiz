@@ -12,7 +12,6 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [maxRounds, setMaxRounds] = useState(10);
 
-  // setting maxrounds to play
   useEffect(() => {
     checkGameState(gameState);
   }, [gameState]);

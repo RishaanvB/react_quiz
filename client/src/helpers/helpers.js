@@ -60,5 +60,5 @@ export {
   resetBtnsStyling,
   shuffleAnswers,
   handleBtnsClickable,
-  checkGameState
+  checkGameState,
 };

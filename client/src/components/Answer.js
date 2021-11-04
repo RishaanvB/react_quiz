@@ -2,7 +2,6 @@ function Answer({
   answer,
   isCorrectAnswer,
   onHandleAnswerGiven,
-  isChecked,
   changeBgOnFalsePick,
 }) {
   return (

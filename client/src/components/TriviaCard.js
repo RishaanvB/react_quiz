@@ -26,16 +26,18 @@ export const TriviaCard = ({
   useEffect(() => {
     shuffleAnswers();
   }, []);
-  // shuffleAnswers()
+
   const changeBtnColorOnFalse = (e) => {
     addClassName(e.target, 'wrong-answer-given');
     setTimeout(() => {
       setCorrectAnswerGiven('change');
     }, 50);
   };
+  
   const changeBtnColorOnTrue = (e) => {
     addClassName(e.target, 'correct-answer-given');
   };
+  
   const handleBtnAbility = () => {
     handleBtnsClickable('.btn', 'disable');
     setTimeout(() => {
@@ -56,6 +58,7 @@ export const TriviaCard = ({
       onSetCurrentQuestion((prevQuestion) => prevQuestion + 1);
     }
   };
+  
   const handleAnswerGiven = (e, isCorrectAnswer) => {
     handleBtnAbility();
     setIsCardGone(true);

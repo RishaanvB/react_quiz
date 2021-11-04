@@ -21,9 +21,6 @@
   font-family: var(--oswald);
 }
 .container {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   width: clamp(250px, 100%, 440px);
   margin: 2rem auto;
 }
@@ -32,7 +29,6 @@
   position: relative;
   margin: 0.5rem auto;
   width: clamp(300px, 100%, 90%);
-  /* max-width: 90vw; */
   border: none;
   background: rgb(247, 247, 247);
   border-radius: 5px;
@@ -61,7 +57,6 @@
   animation-duration: 200ms;
   animation-timing-function: linear;
 }
-
 
 @keyframes backdrop {
   from {

@@ -5,16 +5,14 @@ import '../styles/HomeScreen.css';
 
 export default function HomeScreen(props) {
   useEffect(() => {
-    document.title = 'Quiz Home'
-  })
+    document.title = 'Quiz Home';
+  });
   return (
     <div className="homescreen intoView">
       <img className="homescreen-logo" src={imgLogo} alt="questionmark logo" />
       <h1 className="quiz-title">QUIZKNOWS</h1>
       <div>
-        <button
-          className="btn btn-start"
-          onClick={props.resetGame}>
+        <button className="btn btn-start" onClick={props.resetGame}>
           Start
         </button>
         <button

@@ -1,4 +1,4 @@
-export const fetchToken = async () => {
+const fetchToken = async () => {
   const reponse = await fetch(
     'https://opentdb.com/api_token.php?command=request'
   );
@@ -63,7 +63,6 @@ export const getTriviaData = async (
       case 4:
         // Code 4: Token Empty Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.
         console.log('token expired resetting  token');
-        //opentdb.com/api_token.php?command=reset&token=YOURTOKENHERE
         const resetToken = await fetchResetToken().then((token) => token);
         localStorage.setItem('token', resetToken);
         console.log('token created and stored in localstorage');

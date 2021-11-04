@@ -2,7 +2,7 @@ const userModel = require('../models/userModel');
 const { body, validationResult } = require('express-validator');
 
 exports.getUsers = async (req, res, next) => {
-  const users = await userModel.find({}).sort({score:-1}).limit(10).exec();
+  const users = await userModel.find({}).sort({ score: -1 }).limit(10).exec();
   console.log(users);
   res.json(users);
 };
